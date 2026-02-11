@@ -16,7 +16,6 @@ function Attendance(){
   const checkIn=async()=>{
     await API.post("/attendance",{
       user_id:user.id,
-      user_name:user.name,
       date:new Date().toISOString().split("T")[0],
       checkIn:new Date().toLocaleTimeString(),
       checkOut:null
@@ -42,7 +41,7 @@ function Attendance(){
         <tbody>
           {records.map(r=>(
             <tr key={r.id}>
-              <td>{r.date}</td>
+              
               <td>{r.date}</td>
               <td>{r.checkIn}</td>
               <td>

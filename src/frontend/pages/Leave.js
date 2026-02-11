@@ -16,6 +16,7 @@ function Leave(){
   const apply=async()=>{
     await API.post("/leaveRequests",{
       user_id:user.id,
+      user_name:user.name,
       reason,
       status:"Pending"
     });

@@ -6,12 +6,14 @@ import StudentDashboard from "../src/frontend/pages/StudentDashboard";
 import TeacherDashboard from "../src/frontend/pages/TeacherDashboard";
 import AdminDashboard from "../src/frontend/pages/AdminDashboard";
 import PrivateRoute from "../src/frontend/routing/PrivateRoute";
+import AdminLogin from "./frontend/pages/AdminLogin";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="adminlogin" element={<AdminLogin/>}/>
         <Route path="/register" element={<Register />} />
         <Route path="/student" element={<PrivateRoute><StudentDashboard/></PrivateRoute>} />
         <Route path="/teacher" element={<PrivateRoute><TeacherDashboard/></PrivateRoute>} />

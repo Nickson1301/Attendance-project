@@ -1,5 +1,5 @@
 {
-  "users": [
+  "admin":[
     {
       "id": "1",
       "uid": "admin001",
@@ -7,7 +7,10 @@
       "email": "admin@gmail.com",
       "password": "1234",
       "role": "Admin"
-    },
+    }
+  ],
+  "users": [
+    
     {
       "id": "1471",
       "uid": "nickson123",
@@ -55,15 +58,18 @@
       "date": "2026-02-11",
       "checkIn": "6:41:59 pm",
       "checkOut": null
+    },
+    {
+      "id": "725e",
+      "user_id": "1471",
+      "user_name": "nickson",
+      "date": "2026-02-11",
+      "checkIn": "9:14:48 PM",
+      "checkOut": "9:15:19 PM"
     }
   ],
   "leaveRequests": [
-    {
-      "id": "d808",
-      "user_id": "1471",
-      "reason": "aai varuthu",
-      "status": "Rejected"
-    },
+    
     {
       "id": "fd35",
       "user_id": "b4d9",

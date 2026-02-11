@@ -17,13 +17,30 @@ function ApproveLeaves(){
   return(
     <div className="card">
       <h3>Approve Leaves</h3>
-      {leaves.map(l=>(
-        <div key={l.id}>
-          User {l.user_id} - {l.user_name} - {l.reason} - {l.status}
-          <button onClick={()=>update(l.id,"Approved")}>Approve</button>
-          <button onClick={()=>update(l.id,"Rejected")}>Reject</button>
-        </div>
-      ))}
+
+      <table>
+          <thead>
+          <tr><th>Name</th><th>Reason</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
+        </thead>
+        <tbody>
+          {leaves.map(l=>(
+            <tr key={l.id}>
+              
+              <td>{l.user_name}</td>
+              <td>{l.reason}</td>
+              <td>{l.status}</td>
+              <td>
+                <button onClick={()=>update(l.id,"Approved")}>Approve</button>
+              </td>
+              <td>
+                <button onClick={()=>update(l.id,"Rejected")}>Reject</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+        
+      </table>
+     
     </div>
   )
 }
