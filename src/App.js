@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "../src/frontend/pages/Login";
+import Register from "../src/frontend/pages/Register";
+import StudentDashboard from "../src/frontend/pages/StudentDashboard";
+import TeacherDashboard from "../src/frontend/pages/TeacherDashboard";
+import AdminDashboard from "../src/frontend/pages/AdminDashboard";
+import PrivateRoute from "../src/frontend/routing/PrivateRoute";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/student" element={<PrivateRoute><StudentDashboard/></PrivateRoute>} />
+        <Route path="/teacher" element={<PrivateRoute><TeacherDashboard/></PrivateRoute>} />
+        <Route path="/admin" element={<PrivateRoute><AdminDashboard/></PrivateRoute>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;

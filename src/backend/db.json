@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "uid": "admin001",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "1234",
+      "role": "Admin"
+    },
+    {
+      "id": "1471",
+      "uid": "nickson123",
+      "name": "nickson",
+      "email": "nickson@gmail.com",
+      "password": "nick@123",
+      "role": "Student"
+    },
+    {
+      "id": "b4d9",
+      "uid": "stephan123",
+      "name": "stephan",
+      "email": "stephan@gamil.com",
+      "password": "12345",
+      "role": "Teacher"
+    },
+    {
+      "id": "336e",
+      "uid": "girish123",
+      "name": "girish",
+      "email": "girish@gmail.com",
+      "password": "12345",
+      "role": "Student"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "da7d",
+      "user_id": "1471",
+      "date": "2026-02-11",
+      "checkIn": "6:22:17 pm",
+      "checkOut": "6:22:22 pm"
+    },
+    {
+      "id": "6d4b",
+      "user_id": "b4d9",
+      "date": "2026-02-11",
+      "checkIn": "6:31:40 pm",
+      "checkOut": null
+    },
+    {
+      "id": "6aa7",
+      "user_id": "336e",
+      "user_name": "girish",
+      "date": "2026-02-11",
+      "checkIn": "6:41:59 pm",
+      "checkOut": null
+    }
+  ],
+  "leaveRequests": [
+    {
+      "id": "d808",
+      "user_id": "1471",
+      "reason": "aai varuthu",
+      "status": "Rejected"
+    },
+    {
+      "id": "fd35",
+      "user_id": "b4d9",
+      "reason": "fever",
+      "status": "Rejected"
+    },
+    {
+      "id": "bc08",
+      "user_id": "336e",
+      "reason": "fever",
+      "status": "Pending"
+    }
+  ]
+}
