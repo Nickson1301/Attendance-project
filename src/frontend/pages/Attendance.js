@@ -15,6 +15,7 @@ function Attendance(){
 
   const checkIn=async()=>{
     await API.post("/attendance",{
+      user_name:user.name,
       user_id:user.id,
       date:new Date().toISOString().split("T")[0],
       checkIn:new Date().toLocaleTimeString(),

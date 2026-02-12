@@ -15,11 +15,11 @@ function ApproveLeaves(){
   }
 
   return(
-    <div className="card">
+    <div className="card bg-light text-dark">
       <h3>Approve Leaves</h3>
 
-      <table>
-          <thead>
+      <table className="table table-bordered">
+          <thead className="table-primary">
           <tr><th>Name</th><th>Reason</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
         </thead>
         <tbody>

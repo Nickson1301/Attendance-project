@@ -1,5 +1,5 @@
 {
-  "admin":[
+  "admin": [
     {
       "id": "1",
       "uid": "admin001",
@@ -10,7 +10,6 @@
     }
   ],
   "users": [
-    
     {
       "id": "1471",
       "uid": "nickson123",
@@ -28,59 +27,47 @@
       "role": "Teacher"
     },
     {
-      "id": "336e",
-      "uid": "girish123",
-      "name": "girish",
-      "email": "girish@gmail.com",
+      "id": "f8dd",
+      "uid": "lalith123",
+      "name": "lalith",
+      "email": "lalith@gmail.com",
       "password": "12345",
-      "role": "Student"
+      "role": "Teacher"
     }
   ],
   "attendance": [
     {
-      "id": "da7d",
-      "user_id": "1471",
-      "date": "2026-02-11",
-      "checkIn": "6:22:17 pm",
-      "checkOut": "6:22:22 pm"
-    },
-    {
-      "id": "6d4b",
-      "user_id": "b4d9",
-      "date": "2026-02-11",
-      "checkIn": "6:31:40 pm",
-      "checkOut": null
-    },
-    {
-      "id": "6aa7",
-      "user_id": "336e",
-      "user_name": "girish",
-      "date": "2026-02-11",
-      "checkIn": "6:41:59 pm",
-      "checkOut": null
-    },
-    {
-      "id": "725e",
-      "user_id": "1471",
+      "id": "452e",
       "user_name": "nickson",
-      "date": "2026-02-11",
-      "checkIn": "9:14:48 PM",
-      "checkOut": "9:15:19 PM"
+      "user_id": "1471",
+      "date": "2026-02-12",
+      "checkIn": "9:48:25 am",
+      "checkOut": "10:54:33 am"
+    },
+    {
+      "id": "1e08",
+      "user_name": "nickson",
+      "user_id": "1471",
+      "date": "2026-02-12",
+      "checkIn": "10:54:47 am",
+      "checkOut": null
+    },
+    {
+      "id": "8d5a",
+      "user_name": "lalith",
+      "user_id": "f8dd",
+      "date": "2026-02-12",
+      "checkIn": "10:58:02 am",
+      "checkOut": null
     }
   ],
   "leaveRequests": [
-    
     {
-      "id": "fd35",
-      "user_id": "b4d9",
-      "reason": "fever",
+      "id": "67b9",
+      "user_id": "1471",
+      "user_name": "nickson",
+      "reason": "health issue",
       "status": "Rejected"
-    },
-    {
-      "id": "bc08",
-      "user_id": "336e",
-      "reason": "fever",
-      "status": "Pending"
     }
   ]
 }

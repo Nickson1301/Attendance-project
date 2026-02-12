@@ -7,6 +7,7 @@ import TeacherDashboard from "../src/frontend/pages/TeacherDashboard";
 import AdminDashboard from "../src/frontend/pages/AdminDashboard";
 import PrivateRoute from "../src/frontend/routing/PrivateRoute";
 import AdminLogin from "./frontend/pages/AdminLogin";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (

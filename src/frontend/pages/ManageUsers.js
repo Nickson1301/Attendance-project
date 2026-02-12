@@ -18,7 +18,7 @@ function ManageUsers(){
   return(
     <div className="card">
       <h3>Manage Users</h3>
-      <table>
+      <table className="table table-bordered">
         <thead>
           <tr><th>Name</th><th>Role</th><th>Action</th></tr>
         </thead>

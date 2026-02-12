@@ -13,14 +13,14 @@ function Reports(){
   return(
     <div className="card">
       <h3>Attendance Reports</h3>
-      <table>
+      <table className="table table-bordered">
         <thead>
           <tr><th>User ID</th><th>Date</th><th>CheckIn</th><th>CheckOut</th></tr>
         </thead>
         <tbody>
           {attendance.map(a=>(
             <tr key={a.id}>
-              <td>{a.user_id}</td>
+              <td>{a.user_name}</td>
               <td>{a.date}</td>
               <td>{a.checkIn}</td>
               <td>{a.checkOut}</td>
