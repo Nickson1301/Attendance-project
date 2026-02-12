@@ -9,6 +9,7 @@ import API from "../../api";
 
 function TeacherDashboard(){
    const[users,setUsers]=useState([])
+
   useEffect(()=>{
       API.get("/users").then(res=>setUsers(res.data));
     },[]);
@@ -32,7 +33,7 @@ function TeacherDashboard(){
           ))}
         </tbody>
       </table>
-      <h2>Teacher/Staff Dashboard</h2><Link to='/' className="btn btn-primary btn-sm" onClick={logout}>Logout</Link>
+      <h2>Teacher/Staff Dashboard </h2><Link to='/' className="btn btn-primary btn-sm" onClick={logout}>Logout</Link>
       <Attendance/>
       <Leave/>
       

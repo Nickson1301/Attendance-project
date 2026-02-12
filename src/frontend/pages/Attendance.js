@@ -11,10 +11,17 @@ function Attendance(){
 
 
   useEffect(()=>{
-    API.get(`/attendance?user_id=${user.id}`)
+    if(user.role==="student"){
+      API.get(`/attendance?user_id=${user.id}`)
     .then(res=>setRecords(res.data));
+    }
+    else{
+       API.get(`/TeacherAttendance?user_id=${user.id}`)
+    .then(res=>setRecords2(res.data));
+    }
+   
   },[]);
-
+  console.log(records2);
   const checkIn=async()=>{
      if(user.role==="Student"){
         await API.post("/attendance",{
@@ -49,9 +56,16 @@ function Attendance(){
   }
 
   const checkOut=async(id)=>{
-    await API.patch(`/attendance/${id}`,{
+    if(user.role==="student"){
+       await API.patch(`/attendance/${id}`,{
       checkOut:new Date().toLocaleTimeString()
     });
+    }
+    else{
+      await API.patch(`/TeacherAttendance/${id}`,{
+      checkOut:new Date().toLocaleTimeString()
+    });
+    }
     window.location.reload();
   }
 
@@ -72,6 +86,17 @@ function Attendance(){
               <td>
                 {r.checkOut || 
                   <button onClick={()=>checkOut(r.id)}>Check Out</button>}
+              </td>
+            </tr>
+          ))}
+          {records2.map(t=>(
+            <tr key={t.id}>
+              
+              <td>{t.date}</td>
+              <td>{t.checkIn}</td>
+              <td>
+                {t.checkOut || 
+                  <button onClick={()=>checkOut(t.id)}>Check Out</button>}
               </td>
             </tr>
           ))}

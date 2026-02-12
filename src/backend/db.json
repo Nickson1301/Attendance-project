@@ -12,23 +12,52 @@
   "teachers": [
     {
       "id": "123",
-      "uid": "a123",
-      "name": "nkljlcf",
-      "email": "ergerb",
+      "uid": "lalith12",
+      "name": "lalith",
+      "email": "lalith@gmail",
       "password": "123",
-      "role": "Teacher"
-    },
-    {
-      "id": "edfe",
-      "uid": "ste123",
-      "name": "rhryjh",
-      "email": "yjnhty",
-      "password": "sss123",
       "role": "Teacher"
     }
   ],
-  "users": [],
-  "attendance": [],
-  "TeacherAttendance": [],
-  "leaveRequests": []
+  "users": [
+    {
+      "id": "12",
+      "uid": "nick123",
+      "name": "nickson",
+      "email": "nicksonrojar@gmail.com",
+      "password": "1234",
+      "role": "Student"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "94cc",
+      "user_name": "nickson",
+      "user_id": "12",
+      "user_role": "Student",
+      "date": "2026-02-12",
+      "checkIn": "8:42:23 PM",
+      "checkOut": null
+    }
+  ],
+  "TeacherAttendance": [
+    {
+      "id": "883f",
+      "user_name": "lalith",
+      "user_id": "123",
+      "user_role": "Teacher",
+      "date": "2026-02-12",
+      "checkIn": "9:32:35 PM",
+      "checkOut": "9:34:57 PM"
+    }
+  ],
+  "leaveRequests": [
+    {
+      "id": "085b",
+      "user_id": "123",
+      "user_name": "lalith",
+      "reason": "fever",
+      "status": "Approved"
+    }
+  ]
 }
