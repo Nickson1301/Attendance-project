@@ -24,7 +24,7 @@ function Leave(){
   }
 
   return(
-    <div className="card">
+    <div className="">
       <h3>Leave</h3>
       <input placeholder="Reason" onChange={e=>setReason(e.target.value)}/>
       <button onClick={apply}>Apply</button>

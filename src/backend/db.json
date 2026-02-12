@@ -9,65 +9,26 @@
       "role": "Admin"
     }
   ],
-  "users": [
+  "teachers": [
     {
-      "id": "1471",
-      "uid": "nickson123",
-      "name": "nickson",
-      "email": "nickson@gmail.com",
-      "password": "nick@123",
-      "role": "Student"
-    },
-    {
-      "id": "b4d9",
-      "uid": "stephan123",
-      "name": "stephan",
-      "email": "stephan@gamil.com",
-      "password": "12345",
+      "id": "123",
+      "uid": "a123",
+      "name": "nkljlcf",
+      "email": "ergerb",
+      "password": "123",
       "role": "Teacher"
     },
     {
-      "id": "f8dd",
-      "uid": "lalith123",
-      "name": "lalith",
-      "email": "lalith@gmail.com",
-      "password": "12345",
+      "id": "edfe",
+      "uid": "ste123",
+      "name": "rhryjh",
+      "email": "yjnhty",
+      "password": "sss123",
       "role": "Teacher"
     }
   ],
-  "attendance": [
-    {
-      "id": "452e",
-      "user_name": "nickson",
-      "user_id": "1471",
-      "date": "2026-02-12",
-      "checkIn": "9:48:25 am",
-      "checkOut": "10:54:33 am"
-    },
-    {
-      "id": "1e08",
-      "user_name": "nickson",
-      "user_id": "1471",
-      "date": "2026-02-12",
-      "checkIn": "10:54:47 am",
-      "checkOut": null
-    },
-    {
-      "id": "8d5a",
-      "user_name": "lalith",
-      "user_id": "f8dd",
-      "date": "2026-02-12",
-      "checkIn": "10:58:02 am",
-      "checkOut": null
-    }
-  ],
-  "leaveRequests": [
-    {
-      "id": "67b9",
-      "user_id": "1471",
-      "user_name": "nickson",
-      "reason": "health issue",
-      "status": "Rejected"
-    }
-  ]
+  "users": [],
+  "attendance": [],
+  "TeacherAttendance": [],
+  "leaveRequests": []
 }

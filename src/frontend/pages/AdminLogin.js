@@ -12,15 +12,15 @@ function AdminLogin(){
   const adminlogin=async()=>{
     const res=await API.get(`/admin?uid=${uid}&password=${password}`);
     if(res.data.length>0){
-      const user=res.data[0];
-      localStorage.setItem("admin",JSON.stringify(user));
-      if(user.role==="Admin") navigate("/admin");
+      const admin=res.data[0];
+      localStorage.setItem("admin",JSON.stringify(admin));
+      if(admin.role==="Admin") navigate("/admin");
     } else alert("No admin found-invalid");
   }
 
   return(
-    <div className="container">
-      <div className="card">
+    <div className="">
+      <div className="">
         <h2>Admin Login</h2>
         <input placeholder="Admin ID" onChange={e=>setUid(e.target.value)} />
         <input type="password" placeholder="Password" onChange={e=>setPassword(e.target.value)} />

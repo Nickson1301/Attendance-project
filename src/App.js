@@ -8,12 +8,14 @@ import AdminDashboard from "../src/frontend/pages/AdminDashboard";
 import PrivateRoute from "../src/frontend/routing/PrivateRoute";
 import AdminLogin from "./frontend/pages/AdminLogin";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import TeachersLogin from "./frontend/pages/TeachersLogin";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="teacherlogin" element={<TeachersLogin/>}/>
         <Route path="adminlogin" element={<AdminLogin/>}/>
         <Route path="/register" element={<Register />} />
         <Route path="/student" element={<PrivateRoute><StudentDashboard/></PrivateRoute>} />

@@ -7,6 +7,8 @@ import './style.css'
 function Attendance(){
   const user=JSON.parse(localStorage.getItem("user"));
   const [records,setRecords]=useState([]);
+  const [records2,setRecords2]=useState([]);
+
 
   useEffect(()=>{
     API.get(`/attendance?user_id=${user.id}`)
@@ -14,14 +16,36 @@ function Attendance(){
   },[]);
 
   const checkIn=async()=>{
-    await API.post("/attendance",{
-      user_name:user.name,
-      user_id:user.id,
-      date:new Date().toISOString().split("T")[0],
-      checkIn:new Date().toLocaleTimeString(),
-      checkOut:null
-    });
-    window.location.reload();
+     if(user.role==="Student"){
+        await API.post("/attendance",{
+        user_name:user.name,
+        user_id:user.id,
+        user_role:user.role,
+        date:new Date().toISOString().split("T")[0],
+        checkIn:new Date().toLocaleTimeString(),
+        checkOut:null
+      });
+      }
+      else if(user.role === "Teacher"){
+        await API.post("/TeacherAttendance", {
+        user_name:user.name,
+        user_id:user.id,
+        user_role:user.role,
+        date:new Date().toISOString().split("T")[0],
+        checkIn:new Date().toLocaleTimeString(),
+        checkOut:null
+      });
+      }
+    
+    // await API.post("/attendance",{
+    //   user_name:user.name,
+    //   user_id:user.id,
+    //   user_role:user.role,
+    //   date:new Date().toISOString().split("T")[0],
+    //   checkIn:new Date().toLocaleTimeString(),
+    //   checkOut:null
+    // });
+     window.location.reload();
   }
 
   const checkOut=async(id)=>{
@@ -32,10 +56,10 @@ function Attendance(){
   }
 
   return(
-    <div className="card">
+    <div className="">
       <h3>Attendance</h3>
       <button onClick={checkIn}>Check In</button>
-      <table>
+      <table className="table table-bordered">
         <thead>
           <tr><th>Date</th><th>Check In</th><th>Check Out</th></tr>
         </thead>

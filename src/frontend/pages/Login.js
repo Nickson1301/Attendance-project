@@ -11,22 +11,22 @@ function Login() {
 
   const login = async () => {
     const res = await API.get(`/users?uid=${uid}&password=${password}`);
+    console.log(res.data)
     if (res.data.length > 0) {
       const user = res.data[0];
       localStorage.setItem("user", JSON.stringify(user));
-      if (user.role === "Teacher" || user.role === "Staff")
-        navigate("/teacher");
-      else navigate("/student");
+      if (user.role === "Student")
+         navigate("/student");
     } else alert("Invalid Credentials");
   };
 
   return (
     <div className="main_sec">
-      <div className="container div_con">
+      <div className=" div_con">
         <div className="div_img">
           <img src={image} alt="img"></img>
         </div>
-        <div className="card div_card">
+        <div className=" div_card">
           <h2 className="header1">Student/Staff Login</h2>
           <input
             className="input1"
@@ -45,7 +45,8 @@ function Login() {
           <p>
             New User? <Link to="/register">Register</Link>
           </p>
-          <Link to="/adminlogin">Admin Login</Link>
+          <Link to="/adminlogin">Admin Login</Link><br></br>
+          <Link to="/teacherlogin">teacher Login</Link>
         </div>
       </div>
     </div>
