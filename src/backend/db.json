@@ -27,8 +27,35 @@
       "role": "Teacher"
     }
   ],
-  "users": [],
-  "attendance": [],
+  "users": [
+    {
+      "id": "1234",
+      "uid": "nick",
+      "name": "tktyk",
+      "email": "ktyk",
+      "password": "1234",
+      "role": "Student"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "529a",
+      "user_name": "tktyk",
+      "user_id": "1234",
+      "user_role": "Student",
+      "date": "2026-02-12",
+      "checkIn": "7:25:31 pm",
+      "checkOut": "7:25:39 pm"
+    }
+  ],
   "TeacherAttendance": [],
-  "leaveRequests": []
+  "leaveRequests": [
+    {
+      "id": "4be6",
+      "user_id": "1234",
+      "user_name": "tktyk",
+      "reason": "rdhrtjh",
+      "status": "Pending"
+    }
+  ]
 }
