@@ -4,21 +4,48 @@
 	--card:#ffffff;
 	--accent:#0d6efd;
 	--muted:#6c757d;
+	--surface:#ffffff;
+	--border:#e9ecef;
+	--success:#198754;
+	--danger:#dc3545;
+	--glass: rgba(255,255,255,0.6);
 }
 body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#212529}
 .app-container{padding:24px 12px}
-.page-card{background:var(--card);padding:20px;margin:18px 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.page-card{background:var(--card);padding:20px;margin:18px 0;border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
 /* Forms */
-input,select,textarea{padding:8px 10px;margin:6px 0;border:1px solid #dfe3e8;border-radius:4px;width:100%;box-sizing:border-box}
+input,select,textarea{padding:10px 12px;margin:8px 0;border:1px solid var(--border);border-radius:6px;width:100%;box-sizing:border-box;background:#fff}
 label{font-weight:600;color:var(--muted);display:block;margin-top:8px}
-button{padding:8px 14px;border-radius:6px;border:none;background:var(--accent);color:#fff}
+button{padding:10px 14px;border-radius:8px;border:none;background:var(--accent);color:#fff;box-shadow:0 4px 10px rgba(13,110,253,0.12)}
 button.secondary{background:#6c757d}
+button:disabled{opacity:0.6;cursor:not-allowed}
+
+/* Card header */
+.card .card-header, .page-card .card-header{font-weight:700;padding:12px 16px;border-bottom:1px solid var(--border);background:linear-gradient(to right, rgba(13,110,253,0.04), transparent)}
+
+/* Buttons */
+.btn-primary{background:var(--accent);border:none}
+.btn-primary:hover{opacity:0.95}
 
 /* Tables */
 .table{width:100%;border-collapse:collapse;margin-top:12px}
 .table th,.table td{border:1px solid #e9ecef;padding:10px;text-align:left}
 .table thead th{background:#f1f5fb;color:#212529;font-weight:700}
 .table-responsive{overflow-x:auto}
+.table tbody tr:nth-child(even){background:#fbfdff}
+
+/* Responsive layout helpers */
+.row{display:flex;flex-wrap:wrap;gap:16px}
+.col{flex:1}
+.col-1{flex:0 0 25%}
+.col-2{flex:0 0 50%}
+.col-3{flex:0 0 75%}
+
+/* Footer */
+.site-footer{margin-top:32px;padding:18px 12px;text-align:center;color:var(--muted);font-size:0.95rem}
+
+/* Avatar */
+.avatar{width:64px;height:64px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#e9f2ff;color:var(--accent);font-weight:700}
 
 /* Small utilities */
 .muted{color:var(--muted)}

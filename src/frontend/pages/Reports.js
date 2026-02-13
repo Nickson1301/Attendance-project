@@ -17,7 +17,8 @@ function Reports() {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th>User ID</th>
+            <th>User Role</th>
+            <th>User Name</th>
             <th>Date</th>
             <th>CheckIn</th>
             <th>CheckOut</th>
@@ -28,6 +29,7 @@ function Reports() {
           {attendance.map((a) => (
             
             <tr key={a.id}>
+              <td>{a.user_role}</td>
               <td>{a.user_name}</td>
               <td>{a.date}</td>
               <td>{a.checkIn}</td>
@@ -37,6 +39,7 @@ function Reports() {
           ))}
           {t_attendance.map((d) => (
             <tr key={d.id}>
+              <td>{d.user_role}</td>
               <td>{d.user_name}</td>
               <td>{d.date}</td>
               <td>{d.checkIn}</td>
