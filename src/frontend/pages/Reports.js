@@ -21,6 +21,7 @@ function Reports() {
             <th>Date</th>
             <th>CheckIn</th>
             <th>CheckOut</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@ function Reports() {
               <td>{a.date}</td>
               <td>{a.checkIn}</td>
               <td>{a.checkOut}</td>
+              <td>{a.user_status || "Absent"}</td>
             </tr>
           ))}
           {t_attendance.map((d) => (
@@ -39,6 +41,7 @@ function Reports() {
               <td>{d.date}</td>
               <td>{d.checkIn}</td>
               <td>{d.checkOut}</td>
+              <td>{d.user_status || "Absent"}</td>
             </tr>
           ))}
         </tbody>

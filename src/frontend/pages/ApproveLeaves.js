@@ -20,14 +20,17 @@ function ApproveLeaves(){
 
       <table className="table table-bordered">
           <thead className="table-primary">
-          <tr><th>Name</th><th>Reason</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
+          <tr><th>Name</th><th>Type</th><th>Reason</th><th>Start Date</th><th>End Date</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
         </thead>
         <tbody>
           {leaves.map(l=>(
             <tr key={l.id}>
               
               <td>{l.user_name}</td>
+              <td>{l.leaveType || '-'}</td>
               <td>{l.reason}</td>
+              <td>{l.startDate || '-'}</td>
+              <td>{l.endDate || '-'}</td>
               <td>{l.status}</td>
               <td>
                 <button onClick={()=>update(l.id,"Approved")}>Approve</button>
