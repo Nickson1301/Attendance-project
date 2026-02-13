@@ -13,7 +13,7 @@ function AdminLogin(){
     const res=await API.get(`/admin?uid=${uid}&password=${password}`);
     if(res.data.length>0){
       const admin=res.data[0];
-      localStorage.setItem("admin",JSON.stringify(admin));
+      localStorage.setItem("user",JSON.stringify(admin));
       if(admin.role==="Admin") navigate("/admin");
     } else alert("No admin found-invalid");
   }
