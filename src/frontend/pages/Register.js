@@ -20,9 +20,9 @@ function Register(){
   }
 
   return(
-    <div className="">
-      <div className="">
-        <h2>Register</h2>
+    <div className="page-wrapper">
+      <div className="page-card">
+        <h2 className="page-title">Register</h2>
         <input placeholder="ID" onChange={e=>setForm({...form,id:e.target.value})}/>
         <input placeholder="UID" onChange={e=>setForm({...form,uid:e.target.value})}/>
         <input placeholder="Name" onChange={e=>setForm({...form,name:e.target.value})}/>
@@ -31,7 +31,6 @@ function Register(){
         <select onChange={e=>setForm({...form,role:e.target.value})}>
           <option>Student</option>
           <option>Teacher</option>
-          
         </select>
         <button onClick={submit}>Register</button>
       </div>

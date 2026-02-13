@@ -11,80 +11,114 @@
   ],
   "teachers": [
     {
-      "id": "123",
-      "uid": "lalith12",
+      "id": "1234",
+      "uid": "giri",
+      "name": "girish",
+      "email": "girish@gmail.com",
+      "password": "1234",
+      "role": "Teacher"
+    },
+    {
+      "id": "11",
+      "uid": "lalit",
       "name": "lalith",
-      "email": "lalith@gmail",
-      "password": "123",
+      "email": "lalith@gmail.com",
+      "password": "1234",
       "role": "Teacher"
     }
   ],
   "users": [
     {
-<<<<<<< HEAD
-      "id": "1234",
-      "uid": "nick",
-      "name": "tktyk",
-      "email": "ktyk",
-=======
-      "id": "12",
-      "uid": "nick123",
-      "name": "nickson",
-      "email": "nicksonrojar@gmail.com",
->>>>>>> 8827b993417f97a5bd8fdfb8b59fa53edf1bbea8
+      "id": "111",
+      "uid": "mike",
+      "name": "mick",
+      "email": "mick@gmail.com",
+      "password": "12345",
+      "role": "Student"
+    },
+    {
+      "id": "4844",
+      "uid": "stephan",
+      "name": "stephan",
+      "email": "stephan@gamil.com",
+      "password": "4844",
+      "role": "Student"
+    },
+    {
+      "id": "4841",
+      "uid": "saran12",
+      "name": "saran",
+      "email": "saran@gmail.com",
       "password": "1234",
       "role": "Student"
     }
   ],
   "attendance": [
     {
-<<<<<<< HEAD
-      "id": "529a",
-      "user_name": "tktyk",
-      "user_id": "1234",
+      "id": "8389",
+      "user_name": "mick",
+      "user_status": "present",
+      "user_id": "111",
       "user_role": "Student",
-      "date": "2026-02-12",
-      "checkIn": "7:25:31 pm",
-      "checkOut": "7:25:39 pm"
-    }
-  ],
-  "TeacherAttendance": [],
-  "leaveRequests": [
+      "date": "2026-02-13",
+      "checkIn": "11:14:03 am",
+      "checkOut": "11:38:24 am"
+    },
     {
-      "id": "4be6",
-      "user_id": "1234",
-      "user_name": "tktyk",
-      "reason": "rdhrtjh",
-      "status": "Pending"
-=======
-      "id": "94cc",
-      "user_name": "nickson",
-      "user_id": "12",
+      "id": "fdc5",
+      "user_name": "stephan",
+      "user_status": "present",
+      "user_id": "4844",
       "user_role": "Student",
-      "date": "2026-02-12",
-      "checkIn": "8:42:23 PM",
-      "checkOut": null
+      "date": "2026-02-13",
+      "checkIn": "11:43:23 am",
+      "checkOut": "2:42:29 pm"
+    },
+    {
+      "id": "0690",
+      "user_name": "saran",
+      "user_status": "present",
+      "user_id": "4841",
+      "user_role": "Student",
+      "date": "2026-02-13",
+      "checkIn": "12:37:41 pm",
+      "checkOut": "2:43:19 pm"
     }
   ],
   "TeacherAttendance": [
     {
-      "id": "883f",
+      "id": "a898",
       "user_name": "lalith",
-      "user_id": "123",
+      "user_status": "present",
+      "user_id": "11",
       "user_role": "Teacher",
-      "date": "2026-02-12",
-      "checkIn": "9:32:35 PM",
-      "checkOut": "9:34:57 PM"
+      "date": "2026-02-13",
+      "checkIn": "11:50:16 am",
+      "checkOut": null
     }
   ],
   "leaveRequests": [
     {
-      "id": "085b",
-      "user_id": "123",
-      "user_name": "lalith",
+      "id": "7a03",
+      "user_id": "111",
+      "user_name": "mick",
+      "user_role": "Student",
+      "reason": "sports",
+      "leaveType": "OD",
+      "startDate": "2026-02-18",
+      "endDate": "2026-02-19",
+      "status": "Pending"
+    },
+    {
+      "id": "5785",
+      "user_id": "1234",
+      "user_name": "girish",
+      "user_role": "Teacher",
       "reason": "fever",
-      "status": "Approved"
->>>>>>> 8827b993417f97a5bd8fdfb8b59fa53edf1bbea8
+      "leaveType": "Leave",
+      "startDate": "2026-02-18",
+      "endDate": "2026-02-18",
+      "status": "Pending"
     }
   ]
 }

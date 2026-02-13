@@ -88,29 +88,35 @@ function Attendance(){
   const hasCheckedInToday = visibleRecords.some(r=>r.date===today && r.checkIn && r.checkIn !== 'Absent');
 
   return(
-    <div className="">
-      <h3>Attendance</h3>
-      <button onClick={checkIn} disabled={hasCheckedInToday}>{hasCheckedInToday ? 'Checked In' : 'Check In'}</button>
-      <table className="table table-bordered">
-        <thead>
-          <tr><th>Date</th><th>Check In</th><th>Check Out</th></tr>
-        </thead>
-        <tbody>
-          {visibleRecords.map(r=>(
-            <tr key={r.id}>
-              <td>{r.date}</td>
-              <td>{r.checkIn}</td>
-              <td>
-                {r.checkIn !== 'Absent' ? (
-                  (r.checkOut && r.checkOut) || <button onClick={()=>checkOut(r.id)}>Check Out</button>
-                ) : (
-                  'Absent'
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="page-wrapper">
+      <div className="page-card">
+        <h3 className="page-title">Attendance</h3>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'flex-start',gap:12}}>
+          <button className={hasCheckedInToday? 'secondary':''} onClick={checkIn} disabled={hasCheckedInToday}>{hasCheckedInToday ? 'Checked In' : 'Check In'}</button>
+        </div>
+        <div className="table-responsive spaced">
+        <table className="table table-bordered">
+          <thead>
+            <tr><th>Date</th><th>Check In</th><th>Check Out</th></tr>
+          </thead>
+          <tbody>
+            {visibleRecords.map(r=>(
+              <tr key={r.id}>
+                <td>{r.date}</td>
+                <td>{r.checkIn}</td>
+                <td>
+                  {r.checkIn !== 'Absent' ? (
+                    (r.checkOut && r.checkOut) || <button onClick={()=>checkOut(r.id)}>Check Out</button>
+                  ) : (
+                    'Absent'
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+      </div>
     </div>
   )
 }

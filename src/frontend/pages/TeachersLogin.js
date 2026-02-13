@@ -43,9 +43,9 @@ function TeachersLogin() {
 
 
   return (
-    <div className="">
-      <div className="">
-        <h2>Teacher Login</h2>
+    <div className="page-wrapper">
+      <div className="page-card">
+        <h2 className="page-title">Teacher Login</h2>
         <input
           placeholder="teacher ID"
           onChange={(e) => setUid(e.target.value)}

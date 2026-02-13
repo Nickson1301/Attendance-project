@@ -22,8 +22,10 @@ function ManageUsers(){
   }
 
   return(
-    <div className="">
-      <h3>Student Details</h3>
+    <div className="page-wrapper">
+      <div className="page-card">
+      <h3 className="page-title">Student Details</h3>
+      <div className="table-responsive">
       <table className="table table-bordered">
         <thead>
           <tr><th>Name</th><th>Role</th><th>Action</th></tr>
@@ -38,7 +40,9 @@ function ManageUsers(){
           ))}
         </tbody>
       </table>
-      <h3>Teacher Details</h3>
+      </div>
+      <h3 className="page-title spaced">Teacher Details</h3>
+      <div className="table-responsive">
       <table className="table table-bordered">
         <thead>
           <tr><th>Name</th><th>Role</th><th>Action</th></tr>
@@ -53,6 +57,8 @@ function ManageUsers(){
           ))}
         </tbody>
       </table>
+        </div>
+        </div>
     </div>
   )
 }

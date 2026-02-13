@@ -19,13 +19,12 @@ function AdminLogin(){
   }
 
   return(
-    <div className="">
-      <div className="">
-        <h2>Admin Login</h2>
+    <div className="page-wrapper">
+      <div className="page-card">
+        <h2 className="page-title">Admin Login</h2>
         <input placeholder="Admin ID" onChange={e=>setUid(e.target.value)} />
         <input type="password" placeholder="Password" onChange={e=>setPassword(e.target.value)} />
         <button onClick={adminlogin}>Sign In</button>
-       
       </div>
     </div>
   )

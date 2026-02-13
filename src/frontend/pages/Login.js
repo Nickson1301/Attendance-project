@@ -21,13 +21,13 @@ function Login() {
   };
 
   return (
-    <div className="main_sec">
-      <div className=" div_con">
-        <div className="div_img">
-          <img src={image} alt="img"></img>
-        </div>
-        <div className=" div_card">
-          <h2 className="header1">Student/Staff Login</h2>
+    <div className="page-wrapper">
+      <div className="page-card">
+        <div className="main_sec">
+          <div className=" div_con">
+           
+            <div className=" div_card">
+              <h2 className="page-title header1">Student Login</h2>
           <input
             className="input1"
             placeholder="UID"
@@ -42,11 +42,9 @@ function Login() {
           />
           <br></br>
           <button onClick={login}>Sign In</button>
-          <p>
-            New User? <Link to="/register">Register</Link>
-          </p>
-          <Link to="/adminlogin">Admin Login</Link><br></br>
-          <Link to="/teacherlogin">teacher Login</Link>
+          
+            </div>
+          </div>
         </div>
       </div>
     </div>
