@@ -1,7 +1,11 @@
 
 import { Navigate } from "react-router-dom";
-function PrivateRoute({ children }) {
+
+function PrivateRoute({ children, allowedRoles }) {
   const user = JSON.parse(localStorage.getItem("user"));
-  return user ? children : <Navigate to="/" />;
+  if (!user) return <Navigate to="/" />;
+  if (allowedRoles && !allowedRoles.includes(user.role)) return <Navigate to="/" />;
+  return children;
 }
+
 export default PrivateRoute;

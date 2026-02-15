@@ -1,7 +1,7 @@
 
 import { useState,useEffect } from "react";
 import API from '../../api'
-import './style.css'
+import './ApproveLeaves.css'
 function ApproveLeaves(){
   const [leaves,setLeaves]=useState([]);
 
@@ -15,7 +15,7 @@ function ApproveLeaves(){
   }
 
   return(
-    <div className="page-wrapper">
+    <div className="approve-leaves-container">
       <div className="page-card">
         <h3 className="page-title">Approve Leaves</h3>
         <div className="table-responsive">

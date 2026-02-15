@@ -1,5 +1,6 @@
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Login from "../src/frontend/pages/Login";
 import Register from "../src/frontend/pages/Register";
 import StudentDashboard from "../src/frontend/pages/StudentDashboard";
@@ -10,38 +11,78 @@ import AdminLogin from "./frontend/pages/AdminLogin";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import TeachersLogin from "./frontend/pages/TeachersLogin";
 
-function App() {
+function AppWrapper() {
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container">
-          <Link className="navbar-brand" to="/">AttendanceApp</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navMenu">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item"><Link className="nav-link" to="/">Login</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/teacherlogin">Teacher</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/adminlogin">Admin</Link></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <App />
+    </BrowserRouter>
+  );
+}
 
+function App() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      const u = JSON.parse(localStorage.getItem("user"));
+      setUser(u);
+    } catch (e) {
+      setUser(null);
+    }
+    const onAuthChange = () => {
+      try { setUser(JSON.parse(localStorage.getItem('user'))); } catch(e){ setUser(null); }
+    }
+    window.addEventListener('authChange', onAuthChange);
+    window.addEventListener('storage', onAuthChange);
+    return () => {
+      window.removeEventListener('authChange', onAuthChange);
+      window.removeEventListener('storage', onAuthChange);
+    }
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/");
+  };
+
+  return (
+    <>
+      {!user && (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+          <div className="container">
+            <Link className="navbar-brand" to="/">AttendanceApp</Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse" id="navMenu">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item"><Link className="nav-link" to="/">Login</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/teacherlogin">Teacher</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/adminlogin">Admin</Link></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      )}
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="teacherlogin" element={<TeachersLogin/>}/>
           <Route path="adminlogin" element={<AdminLogin/>}/>
           <Route path="/register" element={<Register />} />
-          <Route path="/student" element={<PrivateRoute><StudentDashboard/></PrivateRoute>} />
-          <Route path="/teacher" element={<PrivateRoute><TeacherDashboard/></PrivateRoute>} />
-          <Route path="/admin" element={<PrivateRoute><AdminDashboard/></PrivateRoute>} />
+          <Route path="/student" element={<PrivateRoute allowedRoles={["Student"]}><StudentDashboard/></PrivateRoute>} />
+          <Route path="/teacher" element={<PrivateRoute allowedRoles={["Teacher"]}><TeacherDashboard/></PrivateRoute>} />
+          <Route path="/admin" element={<PrivateRoute allowedRoles={["Admin"]}><AdminDashboard/></PrivateRoute>} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
-export default App;
+export default AppWrapper;
+//export default App;
+
+
+

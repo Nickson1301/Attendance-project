@@ -1,7 +1,7 @@
 
 import { useState,useEffect } from "react";
 import API from "../../api";
-import './style.css'
+import './ManageUsers.css'
 
 function ManageUsers(){
   const [users,setUsers]=useState([]);
@@ -22,7 +22,7 @@ function ManageUsers(){
   }
 
   return(
-    <div className="page-wrapper">
+    <div className="manage-users-container">
       <div className="page-card">
       <h3 className="page-title">Student Details</h3>
       <div className="table-responsive">
@@ -41,7 +41,7 @@ function ManageUsers(){
         </tbody>
       </table>
       </div>
-      <h3 className="page-title spaced">Teacher Details</h3>
+      <h3 className="section-title">Teacher Details</h3>
       <div className="table-responsive">
       <table className="table table-bordered">
         <thead>

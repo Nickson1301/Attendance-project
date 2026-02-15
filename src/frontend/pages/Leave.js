@@ -1,7 +1,7 @@
 
 import { useState,useEffect, use } from "react";
 import API from "../../api";
-import './style.css'
+import './Leave.css'
 
 function Leave(){
   const user=JSON.parse(localStorage.getItem("user"));
@@ -39,27 +39,27 @@ function Leave(){
   }
 
   return(
-    <div className="page-wrapper">
+    <div className="leave-container">
       <div className="page-card">
         <h3 className="page-title">Leave</h3>
-        <input placeholder="Reason" onChange={e=>setReason(e.target.value)}/>
-        <div style={{marginTop:8}}>
-          <label style={{marginRight:8}}>Type:</label>
-          <label style={{marginRight:8}}>
+        <input className="leave-reason-input" placeholder="Reason" onChange={e=>setReason(e.target.value)}/>
+        <div className="leave-type-section">
+          <label className="leave-type-label">Type:</label>
+          <label>
             <input type="radio" name="leaveType" value="Leave" checked={leaveType==="Leave"} onChange={e=>setLeaveType(e.target.value)} /> Leave
           </label>
           <label>
             <input type="radio" name="leaveType" value="OD" checked={leaveType==="OD"} onChange={e=>setLeaveType(e.target.value)} /> OD
           </label>
         </div>
-        <div style={{marginTop:8}}>
-          <label style={{marginRight:8}}>Start Date:</label>
-          <input type="date" value={startDate} onChange={e=>setStartDate(e.target.value)} />
-          <label style={{marginLeft:16, marginRight:8}}>End Date:</label>
-          <input type="date" value={endDate} onChange={e=>setEndDate(e.target.value)} />
+        <div className="leave-date-section">
+          <label className="leave-date-label">Start Date:</label>
+          <input className="leave-date-input" type="date" value={startDate} onChange={e=>setStartDate(e.target.value)} />
+          <label className="leave-date-label">End Date:</label>
+          <input className="leave-date-input" type="date" value={endDate} onChange={e=>setEndDate(e.target.value)} />
         </div>
-        <button style={{marginTop:8}} onClick={apply}>Apply</button>
-        <ul className="spaced">
+        <button className="leave-apply-btn" onClick={apply}>Apply</button>
+        <ul className="leave-list spaced">
           {leaves.map(l=>(
             <li key={l.id}>{l.leaveType || '-'} - {l.reason} - {l.startDate || '-'} to {l.endDate || '-'} - {l.status}</li>
           ))}

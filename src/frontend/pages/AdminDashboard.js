@@ -2,32 +2,36 @@
 import ManageUsers from "./ManageUsers";
 import ApproveLeaves from "./ApproveLeaves";
 import Reports from "./Reports";
-import './style.css'
+import './AdminDashboard.css'
 import { Link } from "react-router-dom";
 function AdminDashboard(){
   const user = JSON.parse(localStorage.getItem("user")) || {};
 
+  const logout = ()=>{ localStorage.removeItem('user'); window.location.href = '/'; }
+
   return(
     <div className="page-wrapper">
       <div className="page-card">
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <div className="dashboard-header">
           <h2 className="page-title">Admin Dashboard</h2>
-          <Link to='/' className="btn btn-primary btn-sm">Logout</Link>
+          <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
 
-        <div className="d-flex" style={{gap:16,alignItems:'center',marginTop:12}}>
-          <div style={{width:64,height:64,borderRadius:32,display:'flex',alignItems:'center',justifyContent:'center',background:'#e9f2ff',fontWeight:700,color:'#0d6efd'}}>
+        <div className="dashboard-user-card">
+          <div className="avatar">
             {user.name ? user.name.split(' ').map(n=>n[0]).slice(0,2).join('') : 'U'}
           </div>
-          <div>
-            <div style={{fontSize:18,fontWeight:700}}>{user.name || 'Unknown User'}</div>
-            <div className="muted">{user.role || '-'} • {user.uid || user.email || ''}</div>
+          <div className="user-info">
+            <div className="user-name">{user.name || 'Unknown User'}</div>
+            <div className="user-role">{user.role || '-'} • {user.uid || user.email || ''}</div>
           </div>
         </div>
 
-        <ManageUsers/>
-        <ApproveLeaves/>
-        <Reports/>
+        <div className="dashboard-sections">
+          <ManageUsers/>
+          <ApproveLeaves/>
+          <Reports/>
+        </div>
       </div>
     </div>
   )

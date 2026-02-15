@@ -1,7 +1,7 @@
 
 import { useState,useEffect } from "react";
 import API from "../../api";
-import './style.css'
+import './Attendance.css'
 
 
 function Attendance(){
@@ -88,11 +88,11 @@ function Attendance(){
   const hasCheckedInToday = visibleRecords.some(r=>r.date===today && r.checkIn && r.checkIn !== 'Absent');
 
   return(
-    <div className="page-wrapper">
+    <div className="attendance-container">
       <div className="page-card">
         <h3 className="page-title">Attendance</h3>
-        <div style={{display:'flex',alignItems:'center',justifyContent:'flex-start',gap:12}}>
-          <button className={hasCheckedInToday? 'secondary':''} onClick={checkIn} disabled={hasCheckedInToday}>{hasCheckedInToday ? 'Checked In' : 'Check In'}</button>
+        <div className="check-in-button-group">
+          <button className={`check-in-btn ${hasCheckedInToday? 'secondary':''}`} onClick={checkIn} disabled={hasCheckedInToday}>{hasCheckedInToday ? 'Checked In' : 'Check In'}</button>
         </div>
         <div className="table-responsive spaced">
         <table className="table table-bordered">

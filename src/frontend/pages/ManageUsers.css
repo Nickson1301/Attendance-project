@@ -1,0 +1,66 @@
+/* ManageUsers Component Styles */
+.manage-users-container {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #212529;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 24px 0 16px 0;
+  color: #212529;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #e9ecef;
+  padding: 10px;
+  text-align: left;
+}
+
+.table thead {
+  background: rgba(26, 155, 142, 0.08);
+  font-weight: 700;
+  color: #212529;
+}
+
+.table tbody tr:nth-child(even) {
+  background: rgba(26, 155, 142, 0.02);
+}
+
+.table button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(90deg, #5b9fd8 0%, #4a8fd0 100%);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.table button:hover {
+  opacity: 0.95;
+}
+
+.spaced {
+  margin-top: 12px;
+}

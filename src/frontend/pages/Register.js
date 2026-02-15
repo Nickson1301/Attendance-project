@@ -2,33 +2,50 @@
 import { useState } from "react";
 import API from "../../api";
 import { useNavigate } from "react-router-dom";
-import './style.css'
+import './Register.css'
 
 function Register(){
   const [form,setForm]=useState({id:"",uid:"",name:"",email:"",password:"",role:"Student"});
   const navigate=useNavigate();
 
+  const validate = () => {
+    if(!form.id || !form.id.trim()){ alert('ID is required'); return false }
+    if(!form.uid || !form.uid.trim()){ alert('UID is required'); return false }
+    if(!form.name || !form.name.trim()){ alert('Name is required'); return false }
+    if(!form.name.match(/^[a-zA-Z ]{2,50}$/)){ alert('Name must be 2-50 letters'); return false }
+    if(!form.email || !form.email.trim()){ alert('Email is required'); return false }
+    if(!form.email.match(/^\S+@\S+\.\S+$/)){ alert('Invalid email'); return false }
+    if(!form.password || form.password.length < 8){ alert('Password must be at least 8 characters'); return false }
+    return true;
+  }
+
   const submit=async()=>{
-    if(form.role==="Teacher"){
-      await API.post("/teachers",form);
+    if(!validate()) return;
+    try{
+      if(form.role==="Teacher"){
+        await API.post("/teachers",form);
+      }
+      else{
+        await API.post("/users",form);
+      }
+      alert("Registered Successfully");
+      navigate("/");
+    }catch(err){
+      console.error(err);
+      alert('Registration failed. Check server.');
     }
-    else{
-      await API.post("/users",form);
-    }
-    alert("Registered Successfully");
-    navigate("/");
   }
 
   return(
-    <div className="page-wrapper">
-      <div className="page-card">
-        <h2 className="page-title">Register</h2>
-        <input placeholder="ID" onChange={e=>setForm({...form,id:e.target.value})}/>
-        <input placeholder="UID" onChange={e=>setForm({...form,uid:e.target.value})}/>
-        <input placeholder="Name" onChange={e=>setForm({...form,name:e.target.value})}/>
-        <input placeholder="Email" onChange={e=>setForm({...form,email:e.target.value})}/>
-        <input type="password" placeholder="Password" onChange={e=>setForm({...form,password:e.target.value})}/>
-        <select onChange={e=>setForm({...form,role:e.target.value})}>
+    <div className="auth-wrapper">
+      <div className="auth-card">
+        <h2>Register</h2>
+        <input placeholder="ID" value={form.id} onChange={e=>setForm({...form,id:e.target.value})}/>
+        <input placeholder="UID" value={form.uid} onChange={e=>setForm({...form,uid:e.target.value})}/>
+        <input placeholder="Name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/>
+        <input placeholder="Email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+        <input type="password" placeholder="Password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/>
+        <select value={form.role} onChange={e=>setForm({...form,role:e.target.value})}>
           <option>Student</option>
           <option>Teacher</option>
         </select>

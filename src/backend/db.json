@@ -5,7 +5,7 @@
       "uid": "admin001",
       "name": "Admin",
       "email": "admin@gmail.com",
-      "password": "1234",
+      "password": "Admin@1234",
       "role": "Admin"
     }
   ],
@@ -24,6 +24,14 @@
       "name": "lalith",
       "email": "lalith@gmail.com",
       "password": "1234",
+      "role": "Teacher"
+    },
+    {
+      "id": "12",
+      "uid": "teach123",
+      "name": "teacher",
+      "email": "teach@gamil.com",
+      "password": "Teach@12",
       "role": "Teacher"
     }
   ],
@@ -50,6 +58,22 @@
       "name": "saran",
       "email": "saran@gmail.com",
       "password": "1234",
+      "role": "Student"
+    },
+    {
+      "id": "",
+      "uid": "",
+      "name": "",
+      "email": "",
+      "password": "",
+      "role": "Student"
+    },
+    {
+      "id": "4843",
+      "uid": "nick123",
+      "name": "nickson",
+      "email": "nicksonrojar@gmail.com",
+      "password": "Nickson@123",
       "role": "Student"
     }
   ],

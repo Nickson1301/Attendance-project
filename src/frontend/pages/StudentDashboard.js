@@ -1,35 +1,37 @@
 
-import { Link } from "react-router-dom";
 import Attendance from "./Attendance";
 import Leave from "./Leave";
-import './style.css'
+import './StudentDashboard.css'
 
 function StudentDashboard(){
-  const logout=()=>{ localStorage.clear(); }
+  const logout=()=>{ localStorage.removeItem('user'); window.location.href = '/'; }
   const user = JSON.parse(localStorage.getItem("user")) || {};
 
   return(
     <div className="page-wrapper">
-      <div className="page-card page-wrapper">
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+      <div className="page-card">
+        <div className="dashboard-header">
           <h2 className="page-title">Student Dashboard</h2>
-          <Link to='/' className="btn btn-primary btn-sm" onClick={logout}>Logout</Link>
+          <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
 
-        <div className="d-flex" style={{gap:16,alignItems:'center',marginTop:12}}>
-          <div style={{width:64,height:64,borderRadius:32,display:'flex',alignItems:'center',justifyContent:'center',background:'#e9f2ff',fontWeight:700,color:'#0d6efd'}}>
+        <div className="dashboard-user-card">
+          <div className="avatar">
             {user.name ? user.name.split(' ').map(n=>n[0]).slice(0,2).join('') : 'U'}
           </div>
-          <div>
-            <div style={{fontSize:18,fontWeight:700}}>{user.name || 'Unknown User'}</div>
-            <div className="muted">{user.role || '-' } • {user.uid || user.email || ''}</div>
+          <div className="user-info">
+            <div className="user-name">{user.name || 'Unknown User'}</div>
+            <div className="user-role">{user.role || '-' } • {user.uid || user.email || ''}</div>
           </div>
         </div>
 
-        <Attendance/>
-        <Leave/>
+        <div className="dashboard-content">
+          <Attendance/>
+          <Leave/>
+        </div>
       </div>
     </div>
   )
 }
+
 export default StudentDashboard;

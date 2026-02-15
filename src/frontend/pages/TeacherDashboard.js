@@ -1,8 +1,7 @@
 
-import { Link } from "react-router-dom";
 import Attendance from "./Attendance";
 import Leave from "./Leave";
-import './style.css'
+import './TeacherDashboard.css'
 import { useState,useEffect } from "react";
 import API from "../../api";
 
@@ -20,7 +19,8 @@ function TeacherDashboard(){
     }
 
     const logout=()=>{
-      localStorage.clear();
+      localStorage.removeItem('user');
+      window.location.href = '/';
     }
     const user = JSON.parse(localStorage.getItem("user")) || {};
 
@@ -28,48 +28,50 @@ function TeacherDashboard(){
     <div className="page-wrapper">
       <div className="page-card">
         
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginTop:12}}>
+        <div className="dashboard-header">
           <h2 className="page-title">Teacher/Staff Dashboard</h2>
-          <Link to='/' className="btn btn-primary btn-sm" onClick={logout}>Logout</Link>
+          <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
 
-        <div className="d-flex" style={{gap:16,alignItems:'center',marginTop:12}}>
-          <div style={{width:64,height:64,borderRadius:32,display:'flex',alignItems:'center',justifyContent:'center',background:'#e9f2ff',fontWeight:700,color:'#0d6efd'}}>
+        <div className="dashboard-user-card">
+          <div className="avatar">
             {user.name ? user.name.split(' ').map(n=>n[0]).slice(0,2).join('') : 'U'}
           </div>
-          <div>
-            <div style={{fontSize:18,fontWeight:700}}>{user.name || 'Unknown User'}</div>
-            <div className="muted">{user.role || '-'} • {user.uid || user.email || ''}</div>
+          <div className="user-info">
+            <div className="user-name">{user.name || 'Unknown User'}</div>
+            <div className="user-role">{user.role || '-'} • {user.uid || user.email || ''}</div>
           </div>
         </div>
 
         <Attendance/>
         <Leave/>
-       <h3>Students Leave Request</h3>
-       <div className="table-responsive">
-        <table className="table table-bordered">
-          <thead className="table-primary">
-            <tr><th>Name</th><th>Type</th><th>Reason</th><th>Start Date</th><th>End Date</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
-          </thead>
-          <tbody>
-            {users.filter(u=>(u.user_role==="Student")).map(u=>(
-              <tr key={u.id}>
-                <td>{u.user_name}</td>
-                <td>{u.leaveType || '-'}</td>
-                <td>{u.reason}</td>
-                <td>{u.startDate || '-'}</td>
-                <td>{u.endDate || '-'}</td>
-                <td>{u.status}</td>
-                <td>
-                  <button onClick={()=>update(u.id,"Approved")}>Approve</button>
-                </td>
-                <td>
-                  <button onClick={()=>update(u.id,"Rejected")}>Reject</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+       <div className="leave-requests-section">
+         <h3 className="section-title">Students Leave Request</h3>
+         <div className="table-responsive">
+          <table className="table table-bordered">
+            <thead className="table-primary">
+              <tr><th>Name</th><th>Type</th><th>Reason</th><th>Start Date</th><th>End Date</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
+            </thead>
+            <tbody>
+              {users.filter(u=>(u.user_role==="Student")).map(u=>(
+                <tr key={u.id}>
+                  <td>{u.user_name}</td>
+                  <td>{u.leaveType || '-'}</td>
+                  <td>{u.reason}</td>
+                  <td>{u.startDate || '-'}</td>
+                  <td>{u.endDate || '-'}</td>
+                  <td>{u.status}</td>
+                  <td>
+                    <button onClick={()=>update(u.id,"Approved")}>Approve</button>
+                  </td>
+                  <td>
+                    <button onClick={()=>update(u.id,"Rejected")}>Reject</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
         </div>
       </div>
     </div>

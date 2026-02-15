@@ -1,55 +1,32 @@
+/* Teacher and Admin login styling matching the gradient design */
 .auth-wrapper {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f5d5d2;
+  padding: 20px;
 }
 
-.main_sec {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f5d5d2;
-}
-
-.div_con {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.div_img {
-  width: 50%;
-  height: 100vh;
-  overflow: hidden;
-  object-fit: contain;
-  display: none;
-}
-
-.div_card {
-  text-align: center;
+.auth-card {
   width: 400px;
   padding: 60px 40px;
   background: linear-gradient(135deg, #1a9b8e 0%, #3d5a80 50%, #6b5b95 100%);
   border-radius: 40px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
   color: #ffffff;
+  text-align: center;
 }
 
-.div_card h2 {
+.auth-card h2 {
   font-size: 36px;
   margin-bottom: 40px;
   color: #ffffff;
   font-weight: 600;
 }
 
-.div_card form input {
+.auth-card input {
   width: 100%;
   padding: 16px 20px;
   margin-bottom: 20px;
@@ -62,16 +39,16 @@
   transition: all 0.3s ease;
 }
 
-.div_card form input::placeholder {
+.auth-card input::placeholder {
   color: rgba(51, 51, 51, 0.6);
 }
 
-.div_card form input:focus {
+.auth-card input:focus {
   outline: none;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-.div_card button {
+.auth-card button {
   width: 100%;
   padding: 14px 20px;
   margin-top: 10px;
@@ -86,32 +63,11 @@
   box-shadow: 0 8px 20px rgba(91, 159, 216, 0.3);
 }
 
-.div_card button:hover {
+.auth-card button:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 25px rgba(91, 159, 216, 0.4);
 }
 
-.div_card button:active {
+.auth-card button:active {
   transform: translateY(0);
-}
-
-.input1 {
-  width: 100% !important;
-  padding: 16px 20px !important;
-  margin-bottom: 20px !important;
-  border: none !important;
-  border-radius: 25px !important;
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  color: #333 !important;
-  font-size: 16px !important;
-  box-sizing: border-box !important;
-}
-
-.input1::placeholder {
-  color: rgba(51, 51, 51, 0.6) !important;
-}
-
-.input1:focus {
-  outline: none !important;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
 }
