@@ -1,11 +1,13 @@
 import { useState } from "react";
 import API from "../../api";
 import { useNavigate } from "react-router-dom";
+import ForgotPassword from "./ForgotPassword";
 import "./AuthLogin.css";
 
 function TeachersLogin() {
   const [uid, setUid] = useState("");
   const [password, setPassword] = useState("");
+  const [showForgot, setShowForgot] = useState(false);
   const navigate = useNavigate();
 
   const teacherlogin=async()=>{
@@ -51,15 +53,19 @@ function TeachersLogin() {
         <h2>Teacher Login</h2>
         <input
           placeholder="teacher ID"
+          value={uid}
           onChange={(e) => setUid(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={teacherlogin}>Sign In</button>
+        <button onClick={() => setShowForgot(true)} style={{marginTop:12,background:'transparent',border:'none',color:'#5b9fd8',cursor:'pointer',textDecoration:'underline'}}>Forgot Password?</button>
       </div>
+      {showForgot && <ForgotPassword userType="teacher" onClose={() => setShowForgot(false)} />}
     </div>
   );
 }

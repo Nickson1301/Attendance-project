@@ -11,19 +11,11 @@
   ],
   "teachers": [
     {
-      "id": "12",
-      "uid": "teach123",
-      "name": "teacher",
-      "email": "teach@gamil.com",
-      "password": "Teach@12",
-      "role": "Teacher"
-    },
-    {
       "id": "2",
-      "uid": "giri12",
+      "uid": "girish",
       "name": "girish kumar",
       "email": "girish@gmail.com",
-      "password": "Girish@12",
+      "password": "Girish@123",
       "role": "Teacher"
     },
     {
@@ -54,11 +46,12 @@
   "users": [
     {
       "id": "4843",
-      "uid": "nick123",
-      "name": "nickson",
+      "uid": "Nickson",
+      "name": "Rojarnickson",
       "email": "nicksonrojar@gmail.com",
       "password": "Nickson@123",
-      "role": "Student"
+      "role": "Student",
+      "_type": "student"
     },
     {
       "id": "11",

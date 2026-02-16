@@ -1,11 +1,13 @@
 import { useState } from "react";
 import API from "../../api";
 import { useNavigate } from "react-router-dom";
+import ForgotPassword from "./ForgotPassword";
 import "./Login.css";
 
 function Login() {
   const [uid, setUid] = useState("");
   const [password, setPassword] = useState("");
+  const [showForgot, setShowForgot] = useState(false);
   const navigate = useNavigate();
 
   const validateAndLogin = async (e) => {
@@ -59,8 +61,10 @@ function Login() {
             <br />
             <button type="submit">Sign In</button>
           </form>
+          <button onClick={() => setShowForgot(true)} style={{marginTop:12,background:'transparent',border:'none',color:'#5b9fd8',cursor:'pointer',textDecoration:'underline'}}>Forgot Password?</button>
         </div>
       </div>
+      {showForgot && <ForgotPassword userType="student" onClose={() => setShowForgot(false)} />}
     </div>
   );
 }

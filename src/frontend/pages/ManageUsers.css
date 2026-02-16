@@ -64,3 +64,35 @@
 .spaced {
   margin-top: 12px;
 }
+
+/* Modal for edit form */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1200;
+  padding:20px;
+}
+.modal{
+  width:100%;
+  max-width:760px;
+  background:var(--card-bg, #fff);
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 10px 30px rgba(2,6,23,0.5);
+  border:1px solid rgba(255,255,255,0.04);
+}
+.modal-close{background:transparent;border:none;font-size:20px;cursor:pointer}
+.modal-body input{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd}
+.modal-footer button{padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+
+/* Top drawer (slide-down) */
+.top-drawer{position:fixed;left:0;right:0;top:0;z-index:1300;display:flex;justify-content:center}
+.drawer{width:100%;max-width:1100px;background:var(--card-bg,#fff);border-bottom-left-radius:12px;border-bottom-right-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 6px 20px rgba(2,6,23,0.3)}
+.drawer-header{border-bottom:1px solid rgba(0,0,0,0.04);padding-bottom:8px}
+.drawer-close{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:6px 10px;border-radius:8px;cursor:pointer}
+.drawer-body{max-height:60vh;overflow:auto;padding-top:12px}
+.drawer-footer{padding-top:12px}
