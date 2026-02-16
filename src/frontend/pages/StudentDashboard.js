@@ -9,7 +9,7 @@ function StudentDashboard(){
 
   return(
     <div className="page-wrapper">
-      <div className="page-card">
+      <div className="page-card dashboard-card">
         <div className="dashboard-header">
           <h2 className="page-title">Student Dashboard</h2>
           <button className="logout-btn" onClick={logout}>Logout</button>
@@ -25,9 +25,11 @@ function StudentDashboard(){
           </div>
         </div>
 
-        <div className="dashboard-content">
-          <Attendance/>
-          <Leave/>
+        <div className="dashboard-body">
+          <div className="dashboard-content">
+            <Attendance/>
+            <Leave/>
+          </div>
         </div>
       </div>
     </div>

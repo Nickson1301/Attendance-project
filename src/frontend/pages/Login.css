@@ -1,117 +1,111 @@
-.auth-wrapper {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f5d5d2;
+.auth-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,0.10), transparent 10%),
+              radial-gradient(800px 500px at 90% 90%, rgba(34,197,94,0.06), transparent 10%),
+              linear-gradient(180deg,#0f172a 0%, #0b2545 100%);
+  padding:32px;
+  box-sizing:border-box;
 }
 
-.main_sec {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f5d5d2;
+.div_con{
+  width:100%;
+  max-width:980px;
+  display:flex;
+  gap:24px;
+  align-items:stretch;
 }
 
-.div_con {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+.div_img{
+  flex:1 1 50%;
+  border-radius:20px;
+  display:none;
+  min-height:420px;
 }
 
-.div_img {
-  width: 50%;
-  height: 100vh;
-  overflow: hidden;
-  object-fit: contain;
-  display: none;
+.div_card{
+  flex:0 0 420px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border:1px solid rgba(255,255,255,0.06);
+  padding:36px 30px;
+  border-radius:18px;
+  color:#e6eef8;
+  box-shadow: 0 14px 40px rgba(2,6,23,0.65);
+  transform-origin:center;
+  animation:cardPop .5s cubic-bezier(.22,.9,.25,1) both;
 }
 
-.div_card {
-  text-align: center;
-  width: 400px;
-  padding: 60px 40px;
-  background: linear-gradient(135deg, #1a9b8e 0%, #3d5a80 50%, #6b5b95 100%);
-  border-radius: 40px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+.div_card h2{
+  font-size:26px;
+  margin:0 0 18px 0;
   color: #ffffff;
+  letter-spacing:0.2px;
 }
 
-.div_card h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
-  color: #ffffff;
-  font-weight: 600;
+.brand-sub{
+  font-size:13px;
+  color:rgba(226,232,240,0.8);
+  margin-bottom:18px;
 }
 
-.div_card form input {
-  width: 100%;
-  padding: 16px 20px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #333;
-  font-size: 16px;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+.div_card form input, .input1{
+  width:100%;
+  padding:14px 16px;
+  margin-bottom:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color:#e6eef8;
+  font-size:15px;
+  box-sizing:border-box;
+  transition: box-shadow .18s ease, transform .12s ease;
 }
 
-.div_card form input::placeholder {
-  color: rgba(51, 51, 51, 0.6);
+.div_card form input::placeholder{color:rgba(226,232,240,0.5)}
+
+.div_card form input:focus{outline:none; box-shadow:0 6px 18px rgba(99,102,241,0.14); transform:translateY(-1px)}
+
+.div_card button{
+  width:100%;
+  padding:12px 16px;
+  border-radius:12px;
+  border:none;
+  background: linear-gradient(90deg,#6366f1 0%, #06b6d4 100%);
+  color:#fff;
+  font-weight:600;
+  font-size:15px;
+  box-shadow:0 8px 20px rgba(6,11,43,0.6);
 }
 
-.div_card form input:focus {
-  outline: none;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+.div_card button:hover{transform:translateY(-3px)}
+
+.meta-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.meta-row a{color:rgba(226,232,240,0.8);font-size:13px;text-decoration:none}
+
+.social-row{display:flex;gap:8px;margin-top:14px}
+.social-btn{flex:1;padding:10px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);color:rgba(226,232,240,0.95);font-weight:600}
+
+/* No decorative images by request; keep .div_img hidden */
+
+@media (max-width:600px){
+  .div_con{flex-direction:column;align-items:center}
+  .div_card{width:100%;max-width:420px;padding:26px;border-radius:14px}
+  .div_img{display:none}
 }
 
-.div_card button {
-  width: 100%;
-  padding: 14px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 25px;
-  background: linear-gradient(90deg, #5b9fd8 0%, #4a8fd0 100%);
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(91, 159, 216, 0.3);
+@keyframes cardPop{
+  0%{opacity:0; transform:translateY(10px) scale(.98)}
+  60%{opacity:1; transform:translateY(-6px) scale(1.02)}
+  100%{opacity:1; transform:translateY(0) scale(1)}
 }
 
-.div_card button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(91, 159, 216, 0.4);
-}
+/* Ensure the login card is perfectly centered */
+.auth-wrapper{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
 
-.div_card button:active {
-  transform: translateY(0);
-}
-
-.input1 {
-  width: 100% !important;
-  padding: 16px 20px !important;
-  margin-bottom: 20px !important;
-  border: none !important;
-  border-radius: 25px !important;
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  color: #333 !important;
-  font-size: 16px !important;
-  box-sizing: border-box !important;
-}
-
-.input1::placeholder {
-  color: rgba(51, 51, 51, 0.6) !important;
-}
-
-.input1:focus {
-  outline: none !important;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
-}
+/* soft animated accent on headings */
+.div_card h2{animation: textGlow 3s ease-in-out infinite}
+@keyframes textGlow{0%{text-shadow:0 0 0 rgba(99,102,241,0)}50%{text-shadow:0 8px 28px rgba(99,102,241,0.12)}100%{text-shadow:0 0 0 rgba(99,102,241,0)}}

@@ -3,15 +3,14 @@ import ManageUsers from "./ManageUsers";
 import ApproveLeaves from "./ApproveLeaves";
 import Reports from "./Reports";
 import './AdminDashboard.css'
-import { Link } from "react-router-dom";
+
 function AdminDashboard(){
   const user = JSON.parse(localStorage.getItem("user")) || {};
-
   const logout = ()=>{ localStorage.removeItem('user'); window.location.href = '/'; }
 
   return(
     <div className="page-wrapper">
-      <div className="page-card">
+      <div className="page-card dashboard-card">
         <div className="dashboard-header">
           <h2 className="page-title">Admin Dashboard</h2>
           <button className="logout-btn" onClick={logout}>Logout</button>
@@ -27,13 +26,16 @@ function AdminDashboard(){
           </div>
         </div>
 
-        <div className="dashboard-sections">
-          <ManageUsers/>
-          <ApproveLeaves/>
-          <Reports/>
+        <div className="dashboard-body">
+          <div className="dashboard-sections">
+            <ManageUsers/>
+            <ApproveLeaves/>
+            <Reports/>
+          </div>
         </div>
       </div>
     </div>
   )
 }
+
 export default AdminDashboard;

@@ -1,93 +1,20 @@
-/* Leave Component Styles */
-.leave-container {
-  margin-bottom: 24px;
-}
+/* Leave Component Styles (themed) */
+.leave-container{margin-bottom:24px}
+.page-title{font-size:18px;font-weight:700;margin:0 0 12px 0;color:var(--text)}
+.leave-form-group{margin-top:8px;margin-bottom:12px}
+.leave-reason-input{width:100%;padding:10px 12px;margin:8px 0;border:1px solid rgba(255,255,255,0.04);border-radius:8px;box-sizing:border-box;background:rgba(255,255,255,0.03);color:var(--text);font-size:14px}
+.leave-type-section{margin-top:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.leave-type-label{margin-right:8px;font-weight:600;color:var(--text)}
 
-.page-title {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0 0 16px 0;
-  color: #212529;
-}
-
-.leave-form-group {
-  margin-top: 8px;
-  margin-bottom: 12px;
-}
-
-.leave-reason-input {
-  width: 100%;
-  padding: 10px 12px;
-  margin: 8px 0;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  box-sizing: border-box;
-  background: #fff;
-  font-size: 14px;
-}
-
-.leave-type-section {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.leave-type-label {
-  margin-right: 8px;
-  font-weight: 600;
-  color: #212529;
-}
-
-.leave-date-section {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.leave-date-label {
-  font-weight: 600;
-  color: #212529;
-}
-
-.leave-date-input {
-  padding: 8px 10px;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.leave-apply-btn {
-  margin-top: 8px;
-  padding: 10px 16px;
-  border-radius: 6px;
-  border: none;
-  background: linear-gradient(90deg, #5b9fd8 0%, #4a8fd0 100%);
-  color: #ffffff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.leave-apply-btn:hover {
-  opacity: 0.95;
-  transform: translateY(-2px);
-}
-
-.leave-list {
-  margin-top: 12px;
-  padding-left: 20px;
-}
-
-.leave-list li {
-  padding: 8px 0;
-  color: #212529;
-  line-height: 1.6;
-}
-
-.spaced {
-  margin-top: 12px;
-}
+/* Ensure the radio option labels (Leave / OD) are visible on dark theme */
+.leave-type-section label{color:var(--text);font-weight:600;display:flex;align-items:center;gap:8px}
+.leave-edit-form label{color:var(--text)}
+.leave-date-section{margin-top:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.leave-date-label{font-weight:600;color:var(--text)}
+.leave-date-input{padding:8px 10px;border:1px solid rgba(255,255,255,0.04);border-radius:8px;background:rgba(255,255,255,0.03);color:var(--text)}
+.leave-apply-btn{margin-top:8px;padding:10px 16px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#ffffff;font-weight:600;cursor:pointer;transition:all .24s ease}
+.leave-apply-btn:hover{transform:translateY(-2px)}
+.leave-list{margin-top:12px;padding-left:0}
+.leave-list li{padding:8px 0;color:var(--text);line-height:1.6}
+.spaced{margin-top:12px}
+.leave-type{color:white}

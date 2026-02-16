@@ -26,7 +26,7 @@ function TeacherDashboard(){
 
   return(
     <div className="page-wrapper">
-      <div className="page-card">
+      <div className="page-card dashboard-card">
         
         <div className="dashboard-header">
           <h2 className="page-title">Teacher/Staff Dashboard</h2>
@@ -43,34 +43,36 @@ function TeacherDashboard(){
           </div>
         </div>
 
-        <Attendance/>
-        <Leave/>
-       <div className="leave-requests-section">
-         <h3 className="section-title">Students Leave Request</h3>
-         <div className="table-responsive">
-          <table className="table table-bordered">
-            <thead className="table-primary">
-              <tr><th>Name</th><th>Type</th><th>Reason</th><th>Start Date</th><th>End Date</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
-            </thead>
-            <tbody>
-              {users.filter(u=>(u.user_role==="Student")).map(u=>(
-                <tr key={u.id}>
-                  <td>{u.user_name}</td>
-                  <td>{u.leaveType || '-'}</td>
-                  <td>{u.reason}</td>
-                  <td>{u.startDate || '-'}</td>
-                  <td>{u.endDate || '-'}</td>
-                  <td>{u.status}</td>
-                  <td>
-                    <button onClick={()=>update(u.id,"Approved")}>Approve</button>
-                  </td>
-                  <td>
-                    <button onClick={()=>update(u.id,"Rejected")}>Reject</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="dashboard-body">
+          <Attendance/>
+          <Leave/>
+         <div className="leave-requests-section">
+           <h3 className="section-title">Students Leave Request</h3>
+           <div className="table-responsive">
+            <table className="table table-bordered">
+              <thead className="table-primary">
+                <tr><th>Name</th><th>Type</th><th>Reason</th><th>Start Date</th><th>End Date</th><th>Leave Status</th><th>Approve </th><th>Reject</th></tr>
+              </thead>
+              <tbody>
+                {users.filter(u=>(u.user_role==="Student")).map(u=>(
+                  <tr key={u.id}>
+                    <td>{u.user_name}</td>
+                    <td>{u.leaveType || '-'}</td>
+                    <td>{u.reason}</td>
+                    <td>{u.startDate || '-'}</td>
+                    <td>{u.endDate || '-'}</td>
+                    <td>{u.status}</td>
+                    <td>
+                      <button onClick={()=>update(u.id,"Approved")}>Approve</button>
+                    </td>
+                    <td>
+                      <button onClick={()=>update(u.id,"Rejected")}>Reject</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ function ManageUsers(){
         </tbody>
       </table>
       </div>
-      <h3 className="section-title">Teacher Details</h3>
+      <h3 className="page-title">Teacher Details</h3>
       <div className="table-responsive">
       <table className="table table-bordered">
         <thead>

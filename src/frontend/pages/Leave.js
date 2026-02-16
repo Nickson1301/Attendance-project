@@ -133,10 +133,10 @@ function Leave(){
         <div className="leave-type-section">
           <label className="leave-type-label">Type:</label>
           <label>
-            <input type="radio" name="leaveType" value="Leave" checked={leaveType==="Leave"} onChange={e=>setLeaveType(e.target.value)} /> Leave
+            <input type="radio" name="leaveType" value="Leave" className="leave-type" checked={leaveType==="Leave"} onChange={e=>setLeaveType(e.target.value)} /> Leave
           </label>
           <label>
-            <input type="radio" name="leaveType" value="OD" checked={leaveType==="OD"} onChange={e=>setLeaveType(e.target.value)} /> OD
+            <input type="radio" name="leaveType" value="OD" className="leave-type" checked={leaveType==="OD"} onChange={e=>setLeaveType(e.target.value)} /> OD
           </label>
         </div>
         <div className="leave-date-section">
