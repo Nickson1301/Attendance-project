@@ -16,7 +16,12 @@ function Leave(){
     .then(res=>setLeaves(res.data));
   },[]);
 
-  const apply=async()=>{
+  const apply=async(e)=>{
+    if(e && e.preventDefault) e.preventDefault();
+    if(!reason || !reason.trim()){
+      alert('Please enter a reason for the leave');
+      return;
+    }
     if(!startDate || !endDate){
       alert('Please select start and end date');
       return;
@@ -25,24 +30,30 @@ function Leave(){
       alert('Start date cannot be after end date');
       return;
     }
-    await API.post("/leaveRequests",{
-      user_id:user.id,
-      user_name:user.name,
-      user_role:user.role,
-      reason,
-      leaveType,
-      startDate,
-      endDate,
-      status:"Pending"
-    });
-    window.location.reload();
+    try{
+      await API.post("/leaveRequests",{
+        user_id:user.id,
+        user_name:user.name,
+        user_role:user.role,
+        reason,
+        leaveType,
+        startDate,
+        endDate,
+        status:"Pending"
+      });
+      window.location.reload();
+    }catch(err){
+      console.error(err);
+      alert('Failed to apply for leave.');
+    }
   }
 
   return(
     <div className="leave-container">
       <div className="page-card">
         <h3 className="page-title">Leave</h3>
-        <input className="leave-reason-input" placeholder="Reason" onChange={e=>setReason(e.target.value)}/>
+        <form onSubmit={apply}>
+          <input className="leave-reason-input" placeholder="Reason" value={reason} onChange={e=>setReason(e.target.value)}/>
         <div className="leave-type-section">
           <label className="leave-type-label">Type:</label>
           <label>
@@ -58,7 +69,8 @@ function Leave(){
           <label className="leave-date-label">End Date:</label>
           <input className="leave-date-input" type="date" value={endDate} onChange={e=>setEndDate(e.target.value)} />
         </div>
-        <button className="leave-apply-btn" onClick={apply}>Apply</button>
+          <button className="leave-apply-btn" type="submit">Apply</button>
+        </form>
         <ul className="leave-list spaced">
           {leaves.map(l=>(
             <li key={l.id}>{l.leaveType || '-'} - {l.reason} - {l.startDate || '-'} to {l.endDate || '-'} - {l.status}</li>
