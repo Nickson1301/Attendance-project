@@ -11,3 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Responsive layout utilities */
+:root{
+  --content-max-width:1100px;
+  --page-gap:16px;
+  --card-bg:#ffffff;
+}
+
+.container{
+  max-width:var(--content-max-width);
+  margin:0 auto;
+  padding:0 16px;
+  box-sizing:border-box;
+}
+
+.page-card{
+  background:var(--card-bg);
+  padding:16px;
+  border-radius:8px;
+  box-shadow:0 1px 4px rgba(16,24,40,0.06);
+  margin:16px 0;
+}
+
+/* Tables */
+.table-responsive{width:100%; overflow-x:auto;}
+.leave-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:640px;
+}
+.leave-table th, .leave-table td{
+  text-align:left;
+  padding:10px 12px;
+  border-bottom:1px solid #eef2f6;
+  vertical-align:middle;
+}
+.leave-table th{font-weight:600; font-size:13px; color:#334155}
+
+/* Buttons default responsive behavior */
+button{cursor:pointer}
+
+/* Mobile stacking for tables */
+@media (max-width:700px){
+  .leave-date-section{flex-direction:column;align-items:flex-start}
+  .leave-type-section{gap:8px}
+  .leave-apply-btn, .leave-save-btn, .leave-cancel-btn, .leave-edit-btn, .leave-delete-btn{width:100%; margin-top:8px}
+
+  /* stack table rows into cards */
+  .leave-table{min-width:0;border:0}
+  .leave-table thead{display:none}
+  .leave-table tbody tr{display:block;border:1px solid #eef2f6;border-radius:8px;margin-bottom:12px;padding:12px}
+  .leave-table tbody td{display:flex;justify-content:space-between;padding:6px 0;border-bottom:0}
+  .leave-table tbody td:before{content:attr(data-label);font-weight:600;color:#111827;margin-right:12px}
+}

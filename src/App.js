@@ -31,7 +31,7 @@ function App() {
       setUser(null);
     }
     const onAuthChange = () => {
-      try { setUser(JSON.parse(localStorage.getItem('user'))); } catch(e){ setUser(null); }
+      try { setUser(JSON.parse(localStorage.getItem('user'))); } catch (e) { setUser(null); }
     }
     window.addEventListener('authChange', onAuthChange);
     window.addEventListener('storage', onAuthChange);
@@ -52,7 +52,7 @@ function App() {
       {!user && (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container">
-            <Link className="navbar-brand" to="/">AttendanceApp</Link>
+            <Link className="navbar-brand" to="/">Attendance & Leave Management</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
@@ -70,18 +70,19 @@ function App() {
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="teacherlogin" element={<TeachersLogin/>}/>
-          <Route path="adminlogin" element={<AdminLogin/>}/>
+          <Route path="teacherlogin" element={<TeachersLogin />} />
+          <Route path="adminlogin" element={<AdminLogin />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/student" element={<PrivateRoute allowedRoles={["Student"]}><StudentDashboard/></PrivateRoute>} />
-          <Route path="/teacher" element={<PrivateRoute allowedRoles={["Teacher"]}><TeacherDashboard/></PrivateRoute>} />
-          <Route path="/admin" element={<PrivateRoute allowedRoles={["Admin"]}><AdminDashboard/></PrivateRoute>} />
+          <Route path="/student" element={<PrivateRoute allowedRoles={["Student"]}><StudentDashboard /></PrivateRoute>} />
+          <Route path="/teacher" element={<PrivateRoute allowedRoles={["Teacher"]}><TeacherDashboard /></PrivateRoute>} />
+          <Route path="/admin" element={<PrivateRoute allowedRoles={["Admin"]}><AdminDashboard /></PrivateRoute>} />
         </Routes>
       </div>
     </>
   );
 }
 export default AppWrapper;
+
 //export default App;
 
 

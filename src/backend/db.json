@@ -38,7 +38,7 @@
       "user_role": "Student",
       "date": "2026-02-16",
       "checkIn": "10:41:18 am",
-      "checkOut": null
+      "checkOut": "2:12:39 pm"
     }
   ],
   "TeacherAttendance": [
@@ -63,18 +63,29 @@
       "leaveType": "Leave",
       "startDate": "2026-02-20",
       "endDate": "2026-02-20",
-      "status": "Pending"
+      "status": "Rejected"
     },
     {
-      "id": "9456",
       "user_id": "4843",
       "user_name": "nickson",
       "user_role": "Student",
-      "reason": "",
+      "reason": "sports",
+      "leaveType": "OD",
+      "startDate": "2026-02-18",
+      "endDate": "2026-02-18",
+      "status": "Approved",
+      "id": "edef"
+    },
+    {
+      "id": "3afc",
+      "user_id": "4843",
+      "user_name": "nickson",
+      "user_role": "Student",
+      "reason": "fever",
       "leaveType": "Leave",
-      "startDate": "2026-02-20",
-      "endDate": "2026-02-20",
-      "status": "Pending"
+      "startDate": "2026-02-25",
+      "endDate": "2026-02-25",
+      "status": "Rejected"
     }
   ]
 }
