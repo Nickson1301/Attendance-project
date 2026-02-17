@@ -66,21 +66,21 @@ function StudentDashboard(){
               {activeSection === 'profile' && editing && (
                 <div className="page-card">
                   <h3 className="page-title">Edit Profile</h3>
-                  <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,marginTop:12}}>
-                    <div>
-                      <label>UID</label>
+                  <div className="page-main-div" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,marginTop:12}}>
+                    <div className="edit-profile-div">
+                      <label className="edit-profile">UID</label>
                       <input value={form.uid||''} onChange={e=>handleChange('uid',e.target.value)} />
                     </div>
-                    <div>
-                      <label>Name</label>
+                    <div className="edit-profile-div">
+                      <label className="edit-profile">Name</label>
                       <input value={form.name||''} onChange={e=>handleChange('name',e.target.value)} />
                     </div>
-                    <div>
-                      <label>Email</label>
+                    <div className="edit-profile-div">
+                      <label className="edit-profile">Email</label>
                       <input value={form.email||''} onChange={e=>handleChange('email',e.target.value)} />
                     </div>
-                    <div>
-                      <label>Password</label>
+                    <div className="edit-profile-div">
+                      <label className="edit-profile">Password</label>
                       <input type="password" value={form.password||''} onChange={e=>handleChange('password',e.target.value)} />
                     </div>
                   </div>

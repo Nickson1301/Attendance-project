@@ -1,6 +1,9 @@
 /* ApproveLeaves Component Styles */
 .approve-leaves-container {
   margin-bottom: 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .page-title {
@@ -12,26 +15,37 @@
 
 .table-responsive {
   overflow-x: auto;
+  overflow-y: hidden;
   margin-top: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  display: block;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 12px;
+  table-layout: auto;
 }
 
 .table th,
 .table td {
   border: 1px solid #e9ecef;
-  padding: 10px;
+  padding: 8px 6px;
   text-align: left;
+  font-size: 12px;
+  word-wrap: break-word;
+  min-width: 80px;
 }
 
 .table thead {
   background: rgba(26, 155, 142, 0.08);
   font-weight: 700;
   color: #212529;
+  white-space: nowrap;
 }
 
 .table-primary {
@@ -43,18 +57,26 @@
 }
 
 .table button {
-  padding: 6px 12px;
+  padding: 4px 8px;
   border-radius: 4px;
   border: none;
   background: linear-gradient(90deg, #5b9fd8 0%, #4a8fd0 100%);
   color: #ffffff;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   transition: all 0.3s ease;
-  margin-right: 4px;
+  margin-right: 3px;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .table button:hover {
+  opacity: 0.95;
+
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 4px;
+  white-space: nowrap;
   opacity: 0.95;
 }

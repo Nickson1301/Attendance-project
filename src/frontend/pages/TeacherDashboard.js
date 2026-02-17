@@ -8,9 +8,13 @@ import API from "../../api";
 
 function TeacherDashboard(){
    const[users,setUsers]=useState([])
+   const[students,setStudents]=useState([])
    const [editingProfile, setEditingProfile] = useState(false);
    const [form, setForm] = useState({});
    const [activeSection, setActiveSection] = useState('attendance');
+   const [selectedStudent, setSelectedStudent] = useState(null);
+   const [editing, setEditing] = useState(false);
+   const [studentForm, setStudentForm] = useState({});
    const user = JSON.parse(localStorage.getItem("user")) || {};
 
    const openEditProfile = ()=>{
@@ -37,11 +41,42 @@ function TeacherDashboard(){
 
   useEffect(()=>{
       API.get("/leaveRequests").then(res=>setUsers(res.data));
+      API.get("/users").then(res=>setStudents(res.data));
     },[]);
   
     const update=async(id,status)=>{
       await API.patch(`/leaveRequests/${id}`,{status});
       window.location.reload();
+    }
+
+    const deleteStudent=async(id)=>{
+      await API.delete(`/users/${id}`);
+      const res = await API.get("/users");
+      setStudents(res.data);
+    }
+
+    const openEditStudent = (student) => {
+      setSelectedStudent(student);
+      setStudentForm({ ...student });
+      setEditing(true);
+    }
+
+    const handleStudentChange = (k, v) => setStudentForm(prev=>({ ...prev, [k]: v }));
+
+    const saveStudent = async () => {
+      const id = selectedStudent.id;
+      await API.patch(`/users/${id}`, studentForm);
+      const res = await API.get("/users");
+      setStudents(res.data);
+      setEditing(false);
+      setSelectedStudent(null);
+      setStudentForm({});
+    }
+
+    const closeStudentPanel = () => {
+      setSelectedStudent(null);
+      setEditing(false);
+      setStudentForm({});
     }
 
     const logout=()=>{
@@ -73,12 +108,39 @@ function TeacherDashboard(){
               <button className={activeSection==='attendance'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('attendance')}>Attendance</button>
               <button className={activeSection==='leave'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('leave')}>Leave</button>
               <button className={activeSection==='requests'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('requests')}>Leave Requests</button>
+              <button className={activeSection==='students'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('students')}>Manage Students</button>
               <button className={activeSection==='profile'? 'sidebar-btn active' : 'sidebar-btn'} onClick={openEditProfile}>Edit Profile</button>
             </aside>
 
             <main className="content">
               {activeSection === 'attendance' && !editingProfile && <Attendance/>}
               {activeSection === 'leave' && !editingProfile && <Leave/>}
+              {activeSection === 'students' && !editingProfile && (
+                <div className="page-card">
+                  <h3 className="section-title">Student Details</h3>
+                  <div className="table-responsive">
+                    <table className="table table-bordered">
+                      <thead className="table-primary">
+                        <tr><th>Name</th><th>UID</th><th>Email</th><th>Role</th><th>Action</th></tr>
+                      </thead>
+                      <tbody>
+                        {students.map(student=>(
+                          <tr key={student.id}>
+                            <td>{student.name}</td>
+                            <td>{student.uid}</td>
+                            <td>{student.email}</td>
+                            <td>{student.role}</td>
+                            <td>
+                              <button onClick={()=>openEditStudent(student)}>Edit</button>
+                              <button className="button-spacing" onClick={()=>deleteStudent(student.id)}>Delete</button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
               {activeSection === 'requests' && !editingProfile && (
                 <div className="page-card">
                   <h3 className="section-title">Students Leave Request</h3>
@@ -112,7 +174,7 @@ function TeacherDashboard(){
               {activeSection === 'profile' && editingProfile && (
                 <div className="page-card">
                   <h3 className="page-title">Edit Profile</h3>
-                  <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,marginTop:12}}>
+                  <div className="edit-profile-grid">
                     <div>
                       <label>UID</label>
                       <input value={form.uid||''} onChange={e=>handleChangeProfile('uid',e.target.value)} />
@@ -130,13 +192,54 @@ function TeacherDashboard(){
                       <input type="password" value={form.password||''} onChange={e=>handleChangeProfile('password',e.target.value)} />
                     </div>
                   </div>
-                  <div style={{marginTop:12}}>
-                    <button onClick={saveProfile} style={{marginRight:8}}>Save</button>
+                  <div className="profile-actions">
+                    <button onClick={saveProfile} className="button-group-spacing">Save</button>
                     <button onClick={cancelProfileEdit}>Cancel</button>
                   </div>
                 </div>
               )}
             </main>
+
+            {editing && selectedStudent && (
+              <div className="top-drawer" onClick={closeStudentPanel}>
+                <div className="drawer" onClick={e=>e.stopPropagation()}>
+                  <div className="drawer-header drawer-header-flex">
+                    <h3 className="page-title">Edit Student</h3>
+                    <button className="drawer-close" onClick={closeStudentPanel}>Close</button>
+                  </div>
+
+                  <div className="drawer-body drawer-body-container">
+                    <div className="drawer-grid">
+                      <div>
+                        <label className="form-label">UID</label>
+                        <input value={studentForm.uid || ''} onChange={e=>handleStudentChange('uid',e.target.value)} className="form-input" />
+                      </div>
+                      <div>
+                        <label className="form-label">Name</label>
+                        <input value={studentForm.name || ''} onChange={e=>handleStudentChange('name',e.target.value)} className="form-input" />
+                      </div>
+                      <div>
+                        <label className="form-label">Email</label>
+                        <input value={studentForm.email || ''} onChange={e=>handleStudentChange('email',e.target.value)} className="form-input" />
+                      </div>
+                      <div>
+                        <label className="form-label">Password</label>
+                        <input type="password" value={studentForm.password || ''} onChange={e=>handleStudentChange('password',e.target.value)} className="form-input" />
+                      </div>
+                      <div>
+                        <label className="form-label">Role</label>
+                        <input value={studentForm.role || ''} onChange={e=>handleStudentChange('role',e.target.value)} className="form-input" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="drawer-footer drawer-footer-flex">
+                    <button onClick={saveStudent} className="button-group-spacing">Save</button>
+                    <button onClick={closeStudentPanel}>Cancel</button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

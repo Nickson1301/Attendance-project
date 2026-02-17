@@ -45,15 +45,6 @@
   ],
   "users": [
     {
-      "id": "4843",
-      "uid": "Nickson",
-      "name": "Rojarnickson",
-      "email": "nicksonrojar@gmail.com",
-      "password": "Nickson@123",
-      "role": "Student",
-      "_type": "student"
-    },
-    {
       "id": "11",
       "uid": "nickson",
       "name": "Rojar Nickson",
