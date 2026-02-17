@@ -25,13 +25,13 @@ function App() {
 
   useEffect(() => {
     try {
-      const u = JSON.parse(localStorage.getItem("user"));
+      const u = JSON.parse(sessionStorage.getItem("user"));
       setUser(u);
     } catch (e) {
       setUser(null);
     }
     const onAuthChange = () => {
-      try { setUser(JSON.parse(localStorage.getItem('user'))); } catch (e) { setUser(null); }
+      try { setUser(JSON.parse(sessionStorage.getItem('user'))); } catch (e) { setUser(null); }
     }
     window.addEventListener('authChange', onAuthChange);
     window.addEventListener('storage', onAuthChange);
@@ -42,9 +42,16 @@ function App() {
   }, []);
 
   const logout = () => {
-    localStorage.removeItem("user");
+    // Clear all session data
+    sessionStorage.removeItem("user");
+    localStorage.removeItem("forgotPasswordCode");
+    localStorage.removeItem("forgotPasswordEmail");
+    localStorage.removeItem("forgotPasswordUid");
+    localStorage.removeItem("forgotPasswordUserId");
     setUser(null);
-    navigate("/");
+    // Dispatch auth change event to trigger route validation
+    window.dispatchEvent(new Event('authChange'));
+    navigate("/", { replace: true });
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import API from "../../api";
 import { useNavigate } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
@@ -9,6 +9,12 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showForgot, setShowForgot] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Clear session when user visits login page
+    sessionStorage.removeItem("user");
+    window.dispatchEvent(new Event('authChange'));
+  }, []);
 
   const validateAndLogin = async (e) => {
     e.preventDefault();
@@ -32,7 +38,7 @@ function Login() {
       const res = await API.get(`/users?uid=${encodeURIComponent(uid)}&password=${encodeURIComponent(password)}`);
       if (res.data && res.data.length > 0) {
         const user = res.data[0];
-        localStorage.setItem("user", JSON.stringify(user));
+        sessionStorage.setItem("user", JSON.stringify(user));
         window.dispatchEvent(new Event('authChange'));
         if (user.role === "Student") navigate("/student");
         else navigate("/");

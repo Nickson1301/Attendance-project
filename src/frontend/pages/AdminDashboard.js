@@ -6,8 +6,8 @@ import Reports from "./Reports";
 import './AdminDashboard.css'
 
 function AdminDashboard(){
-  const user = JSON.parse(localStorage.getItem("user")) || {};
-  const logout = ()=>{ localStorage.removeItem('user'); window.location.href = '/'; }
+  const user = JSON.parse(sessionStorage.getItem("user")) || {};
+  const logout = ()=>{ sessionStorage.removeItem('user'); window.location.href = '/'; }
   const [active, setActive] = useState('profile');
 
   return(

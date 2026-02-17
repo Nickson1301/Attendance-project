@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import API from "../../api";
 import { useNavigate } from "react-router-dom";
 import './Register.css'
@@ -7,6 +7,12 @@ import './Register.css'
 function Register(){
   const [form,setForm]=useState({id:"",uid:"",name:"",email:"",password:"",role:"Student"});
   const navigate=useNavigate();
+
+  useEffect(() => {
+    // Clear session when user visits register page
+    sessionStorage.removeItem("user");
+    window.dispatchEvent(new Event('authChange'));
+  }, []);
 
   const validate = () => {
     if(!form.id || !form.id.trim()){ 

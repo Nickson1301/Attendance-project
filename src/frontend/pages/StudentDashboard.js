@@ -6,8 +6,8 @@ import { useState } from "react";
 import API from "../../api";
 
 function StudentDashboard(){
-  const logout=()=>{ localStorage.removeItem('user'); window.location.href = '/'; }
-  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const logout=()=>{ sessionStorage.removeItem('user'); window.location.href = '/'; }
+  const user = JSON.parse(sessionStorage.getItem("user")) || {};
   const [activeSection, setActiveSection] = useState('profile');
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({});
@@ -25,7 +25,7 @@ function StudentDashboard(){
       const id = user.id;
       const res = await API.patch(`/users/${id}`, form);
       const updated = res.data || { ...user, ...form };
-      localStorage.setItem('user', JSON.stringify(updated));
+      sessionStorage.setItem('user', JSON.stringify(updated));
       window.dispatchEvent(new Event('authChange'));
       setEditing(false);
       setActiveSection('attendance');

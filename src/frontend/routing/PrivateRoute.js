@@ -1,10 +1,30 @@
 
 import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function PrivateRoute({ children, allowedRoles }) {
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (!user) return <Navigate to="/" />;
-  if (allowedRoles && !allowedRoles.includes(user.role)) return <Navigate to="/" />;
+  const [isValid, setIsValid] = useState(null);
+
+  useEffect(() => {
+    // Check if user exists and is valid in sessionStorage
+    const user = JSON.parse(sessionStorage.getItem("user") || "null");
+    
+    if (!user || !user.id || !user.role) {
+      setIsValid(false);
+      return;
+    }
+
+    if (allowedRoles && !allowedRoles.includes(user.role)) {
+      setIsValid(false);
+      return;
+    }
+
+    setIsValid(true);
+  }, [allowedRoles]);
+
+  if (isValid === null) return <div>Loading...</div>;
+  if (!isValid) return <Navigate to="/" replace />;
+  
   return children;
 }
 

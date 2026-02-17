@@ -105,6 +105,16 @@
       "date": "2026-02-16",
       "checkIn": "5:21:35 pm",
       "checkOut": "5:25:20 pm"
+    },
+    {
+      "id": "b133",
+      "user_name": "Rojar Nickson",
+      "user_status": "present",
+      "user_id": "11",
+      "user_role": "Student",
+      "date": "2026-02-17",
+      "checkIn": "4:59:43 pm",
+      "checkOut": null
     }
   ],
   "TeacherAttendance": [

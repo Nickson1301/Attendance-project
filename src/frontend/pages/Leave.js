@@ -4,7 +4,7 @@ import API from "../../api";
 import './Leave.css'
 
 function Leave(){
-  const user=JSON.parse(localStorage.getItem("user"));
+  const user=JSON.parse(sessionStorage.getItem("user"));
   const [leaves,setLeaves]=useState([]);
   const [reason,setReason]=useState("");
   const [leaveType,setLeaveType]=useState("Leave");

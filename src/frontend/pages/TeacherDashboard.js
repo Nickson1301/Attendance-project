@@ -15,7 +15,7 @@ function TeacherDashboard(){
    const [selectedStudent, setSelectedStudent] = useState(null);
    const [editing, setEditing] = useState(false);
    const [studentForm, setStudentForm] = useState({});
-   const user = JSON.parse(localStorage.getItem("user")) || {};
+   const user = JSON.parse(sessionStorage.getItem("user")) || {};
 
    const openEditProfile = ()=>{
      setForm({ uid: user.uid || '', name: user.name || '', email: user.email || '', password: user.password || '' });
@@ -30,7 +30,7 @@ function TeacherDashboard(){
        const id = user.id;
        const res = await API.patch(`/teachers/${id}`, form);
        const updated = res.data || { ...user, ...form };
-       localStorage.setItem('user', JSON.stringify(updated));
+       sessionStorage.setItem('user', JSON.stringify(updated));
        window.dispatchEvent(new Event('authChange'));
        setEditingProfile(false);
        setActiveSection('attendance');
@@ -80,7 +80,7 @@ function TeacherDashboard(){
     }
 
     const logout=()=>{
-      localStorage.removeItem('user');
+      sessionStorage.removeItem('user');
       window.location.href = '/';
     }
   return(

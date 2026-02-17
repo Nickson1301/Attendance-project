@@ -5,7 +5,7 @@ import './Attendance.css'
 
 
 function Attendance(){
-  const user=JSON.parse(localStorage.getItem("user"));
+  const user=JSON.parse(sessionStorage.getItem("user"));
   const [records,setRecords]=useState([]);
   const [records2,setRecords2]=useState([]);
 
