@@ -11,8 +11,21 @@ function TeachersLogin() {
   const navigate = useNavigate();
 
   const teacherlogin=async()=>{
-    if(!uid || !uid.trim()){ alert('UID is required'); return }
-    if(!password || password.length < 8){ alert('Password must be at least 8 characters'); return }
+    if(!uid || !uid.trim()){ 
+      alert('Teacher ID is required'); 
+      return;
+    }
+    
+    if(!password){ 
+      alert('Password is required'); 
+      return;
+    }
+    
+    if(password.length < 8){ 
+      alert('Password must be at least 8 characters'); 
+      return;
+    }
+
     try{
       const res=await API.get(`/teachers?uid=${encodeURIComponent(uid)}&password=${encodeURIComponent(password)}`);
       if(res.data && res.data.length>0){
@@ -20,39 +33,21 @@ function TeachersLogin() {
         localStorage.setItem("user",JSON.stringify(teacher));
         window.dispatchEvent(new Event('authChange'));
         if(teacher.role==="Teacher") navigate("/teacher");
-      } else alert("No teacher found - invalid");
-    }catch(err){ console.error(err); alert('Login failed. Check server.'); }
+      } else {
+        alert("Invalid Teacher ID or Password");
+      }
+    }catch(err){ 
+      console.error(err); 
+      alert('Login failed. Check server.');
+    }
   }
-  // const teacherlogin = async () => {
-  //   try {
-  //     const res = await API.get(`/teachers?uid=${uid}&password=${password}`);
-  //     console.log(res.data);
-
-  //     if (res.data.length > 0) {
-  //       const teacher = res.data[0];
-  //       localStorage.setItem("user", JSON.stringify(teacher));
-  //       console.log("Role:", teacher.role);
-  //       console.log("Navigating...");
-  //       if (teacher.role?.toLowerCase().trim() === "teacher") {
-  //         navigate("/teacher");
-  //       }
-  //     } else {
-  //       alert("No teacher found - invalid");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert("Login failed. Check server.");
-  //   }
-  // };
-  // console.log(window.location.pathname);
-
 
   return (
     <div className="auth-wrapper">
       <div className="auth-card">
         <h2>Teacher Login</h2>
         <input
-          placeholder="teacher ID"
+          placeholder="Teacher ID"
           value={uid}
           onChange={(e) => setUid(e.target.value)}
         />

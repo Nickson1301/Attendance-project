@@ -3,7 +3,8 @@ import API from "../../api";
 import "./ForgotPassword.css";
 
 function ForgotPassword({ userType = "student", onClose }) {
-  const [step, setStep] = useState("email"); // email, code, reset
+  const [step, setStep] = useState("verify"); // verify, code, reset
+  const [uid, setUid] = useState("");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -13,6 +14,10 @@ function ForgotPassword({ userType = "student", onClose }) {
   const [error, setError] = useState("");
 
   const sendCode = async () => {
+    if (!uid || !uid.trim()) {
+      setError("UID is required");
+      return;
+    }
     if (!email || !email.trim()) {
       setError("Email is required");
       return;
@@ -21,18 +26,30 @@ function ForgotPassword({ userType = "student", onClose }) {
     setError("");
     try {
       const endpoint = userType === "teacher" ? "/teachers" : "/users";
-      const res = await API.get(`${endpoint}?email=${encodeURIComponent(email)}`);
+      const res = await API.get(`${endpoint}`);
+      
       if (!res.data || res.data.length === 0) {
-        setError("Email not found in system");
+        setError("Unable to fetch user data");
         setLoading(false);
         return;
       }
+
+      // Find user by both UID and email
+      const user = res.data.find(u => u.uid === uid && u.email === email);
+      
+      if (!user) {
+        setError("UID and email combination not found");
+        setLoading(false);
+        return;
+      }
+      
       // In a real app, backend sends code to email
-      // For now, we'll simulate it
       const simulatedCode = Math.random().toString().slice(2, 8);
       localStorage.setItem("forgotPasswordCode", simulatedCode);
       localStorage.setItem("forgotPasswordEmail", email);
+      localStorage.setItem("forgotPasswordUid", uid);
       localStorage.setItem("forgotPasswordType", userType);
+      localStorage.setItem("forgotPasswordUserId", user.id);
       
       setMessage(`✓ Code sent to ${email}. (Test code: ${simulatedCode})`);
       setStep("code");
@@ -71,21 +88,19 @@ function ForgotPassword({ userType = "student", onClose }) {
     setLoading(true);
     setError("");
     try {
-      const storedEmail = localStorage.getItem("forgotPasswordEmail");
+      const userId = localStorage.getItem("forgotPasswordUserId");
       const endpoint = userType === "teacher" ? "/teachers" : "/users";
-      const res = await API.get(`${endpoint}?email=${encodeURIComponent(storedEmail)}`);
       
-      if (res.data && res.data.length > 0) {
-        const user = res.data[0];
-        await API.patch(`${endpoint}/${user.id}`, { password: newPassword });
-        setMessage("✓ Password reset successfully! You can now login.");
-        // Clear localStorage
-        localStorage.removeItem("forgotPasswordCode");
-        localStorage.removeItem("forgotPasswordEmail");
-        localStorage.removeItem("forgotPasswordType");
-        
-        setTimeout(() => onClose(), 2000);
-      }
+      await API.patch(`${endpoint}/${userId}`, { password: newPassword });
+      setMessage("✓ Password reset successfully! You can now login.");
+      // Clear localStorage
+      localStorage.removeItem("forgotPasswordCode");
+      localStorage.removeItem("forgotPasswordEmail");
+      localStorage.removeItem("forgotPasswordUid");
+      localStorage.removeItem("forgotPasswordType");
+      localStorage.removeItem("forgotPasswordUserId");
+      
+      setTimeout(() => onClose(), 2000);
     } catch (err) {
       console.error(err);
       setError("Failed to reset password");
@@ -94,7 +109,12 @@ function ForgotPassword({ userType = "student", onClose }) {
   }
 
   const goBack = () => {
-    if (step === "code") setStep("email");
+    if (step === "code") {
+      setStep("verify");
+      setUid("");
+      setEmail("");
+      setCode("");
+    }
     if (step === "reset") setStep("code");
     setError("");
     setMessage("");
@@ -107,9 +127,16 @@ function ForgotPassword({ userType = "student", onClose }) {
         
         <h2>Reset Password</h2>
 
-        {step === "email" && (
+        {step === "verify" && (
           <div className="forgot-step">
-            <p>Enter your email to receive a verification code</p>
+            <p>Enter your UID and email to verify your account</p>
+            <input
+              type="text"
+              placeholder="UID"
+              value={uid}
+              onChange={(e) => setUid(e.target.value)}
+              className="forgot-input"
+            />
             <input
               type="email"
               placeholder="Email Address"
@@ -118,7 +145,7 @@ function ForgotPassword({ userType = "student", onClose }) {
               className="forgot-input"
             />
             <button onClick={sendCode} disabled={loading} className="forgot-btn">
-              {loading ? "Sending..." : "Send Code"}
+              {loading ? "Verifying..." : "Send Code"}
             </button>
           </div>
         )}

@@ -109,3 +109,17 @@
 /* soft animated accent on headings */
 .div_card h2{animation: textGlow 3s ease-in-out infinite}
 @keyframes textGlow{0%{text-shadow:0 0 0 rgba(99,102,241,0)}50%{text-shadow:0 8px 28px rgba(99,102,241,0.12)}100%{text-shadow:0 0 0 rgba(99,102,241,0)}}
+
+/* Error message styling */
+.error-message {
+  display: block;
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: -15px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.div_card div {
+  position: relative;
+}

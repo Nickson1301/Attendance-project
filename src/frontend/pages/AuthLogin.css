@@ -71,3 +71,17 @@
 .auth-card button:active {
   transform: translateY(0);
 }
+/* Error message styling */
+.error-message {
+  display: block;
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: -15px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.auth-card div {
+  position: relative;
+}

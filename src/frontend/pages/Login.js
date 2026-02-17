@@ -12,12 +12,19 @@ function Login() {
 
   const validateAndLogin = async (e) => {
     e.preventDefault();
+
     if (!uid || !uid.trim()) {
       alert("UID is required");
       return;
     }
-    if (!password || password.length < 8) {
-      alert("Password is required and must be at least 8 characters");
+
+    if (!password) {
+      alert("Password is required");
+      return;
+    }
+
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters");
       return;
     }
 
@@ -30,11 +37,11 @@ function Login() {
         if (user.role === "Student") navigate("/student");
         else navigate("/");
       } else {
-        alert("Invalid Credentials");
+        alert("Invalid UID or Password");
       }
     } catch (err) {
       console.error(err);
-      alert("Login failed. Check server connection.");
+      alert("Login failed. Please check your connection.");
     }
   };
 

@@ -11,7 +11,7 @@ function TeacherDashboard(){
    const[students,setStudents]=useState([])
    const [editingProfile, setEditingProfile] = useState(false);
    const [form, setForm] = useState({});
-   const [activeSection, setActiveSection] = useState('attendance');
+   const [activeSection, setActiveSection] = useState('profile');
    const [selectedStudent, setSelectedStudent] = useState(null);
    const [editing, setEditing] = useState(false);
    const [studentForm, setStudentForm] = useState({});
@@ -20,7 +20,7 @@ function TeacherDashboard(){
    const openEditProfile = ()=>{
      setForm({ uid: user.uid || '', name: user.name || '', email: user.email || '', password: user.password || '' });
      setEditingProfile(true);
-     setActiveSection('profile');
+     setActiveSection('editprofile');
    }
 
    const handleChangeProfile = (k,v)=> setForm(prev=>({ ...prev, [k]: v }));
@@ -37,7 +37,7 @@ function TeacherDashboard(){
      }catch(err){ console.error(err); alert('Update failed'); }
    }
 
-   const cancelProfileEdit = ()=>{ setEditingProfile(false); setForm({}); setActiveSection('attendance'); }
+   const cancelProfileEdit = ()=>{ setEditingProfile(false); setForm({}); setActiveSection('profile'); }
 
   useEffect(()=>{
       API.get("/leaveRequests").then(res=>setUsers(res.data));
@@ -105,14 +105,38 @@ function TeacherDashboard(){
         <div className="dashboard-body">
           <div className="dashboard-layout">
             <aside className="sidebar">
+              <button className={activeSection==='profile'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('profile')}>My Profile</button>
               <button className={activeSection==='attendance'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('attendance')}>Attendance</button>
               <button className={activeSection==='leave'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('leave')}>Leave</button>
               <button className={activeSection==='requests'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('requests')}>Leave Requests</button>
               <button className={activeSection==='students'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActiveSection('students')}>Manage Students</button>
-              <button className={activeSection==='profile'? 'sidebar-btn active' : 'sidebar-btn'} onClick={openEditProfile}>Edit Profile</button>
+              <button className={activeSection==='editprofile'? 'sidebar-btn active' : 'sidebar-btn'} onClick={openEditProfile}>Edit Profile</button>
             </aside>
 
             <main className="content">
+              {activeSection === 'profile' && !editingProfile && (
+                <div className="page-card">
+                  <h3 className="page-title">My Profile</h3>
+                  <div className="profile-info-container">
+                    <div className="profile-info-item">
+                      <label className="info-label">UID</label>
+                      <p className="info-value">{user.uid || 'N/A'}</p>
+                    </div>
+                    <div className="profile-info-item">
+                      <label className="info-label">Name</label>
+                      <p className="info-value">{user.name || 'N/A'}</p>
+                    </div>
+                    <div className="profile-info-item">
+                      <label className="info-label">Email</label>
+                      <p className="info-value">{user.email || 'N/A'}</p>
+                    </div>
+                    <div className="profile-info-item">
+                      <label className="info-label">Role</label>
+                      <p className="info-value">{user.role || 'N/A'}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
               {activeSection === 'attendance' && !editingProfile && <Attendance/>}
               {activeSection === 'leave' && !editingProfile && <Leave/>}
               {activeSection === 'students' && !editingProfile && (
@@ -171,24 +195,24 @@ function TeacherDashboard(){
                   </div>
                 </div>
               )}
-              {activeSection === 'profile' && editingProfile && (
+              {activeSection === 'editprofile' && editingProfile && (
                 <div className="page-card">
                   <h3 className="page-title">Edit Profile</h3>
                   <div className="edit-profile-grid">
                     <div>
-                      <label>UID</label>
+                      <label className="edit-profile-label">UID</label>
                       <input value={form.uid||''} onChange={e=>handleChangeProfile('uid',e.target.value)} />
                     </div>
                     <div>
-                      <label>Name</label>
+                      <label className="edit-profile-label">Name</label>
                       <input value={form.name||''} onChange={e=>handleChangeProfile('name',e.target.value)} />
                     </div>
                     <div>
-                      <label>Email</label>
+                      <label className="edit-profile-label">Email</label>
                       <input value={form.email||''} onChange={e=>handleChangeProfile('email',e.target.value)} />
                     </div>
                     <div>
-                      <label>Password</label>
+                      <label className="edit-profile-label">Password</label>
                       <input type="password" value={form.password||''} onChange={e=>handleChangeProfile('password',e.target.value)} />
                     </div>
                   </div>
@@ -210,23 +234,23 @@ function TeacherDashboard(){
 
                   <div className="drawer-body drawer-body-container">
                     <div className="drawer-grid">
-                      <div>
+                      <div className="form-label-div">
                         <label className="form-label">UID</label>
                         <input value={studentForm.uid || ''} onChange={e=>handleStudentChange('uid',e.target.value)} className="form-input" />
                       </div>
-                      <div>
+                      <div className="form-label-div">
                         <label className="form-label">Name</label>
                         <input value={studentForm.name || ''} onChange={e=>handleStudentChange('name',e.target.value)} className="form-input" />
                       </div>
-                      <div>
+                      <div className="form-label-div">
                         <label className="form-label">Email</label>
                         <input value={studentForm.email || ''} onChange={e=>handleStudentChange('email',e.target.value)} className="form-input" />
                       </div>
-                      <div>
+                      <div className="form-label-div">
                         <label className="form-label">Password</label>
                         <input type="password" value={studentForm.password || ''} onChange={e=>handleStudentChange('password',e.target.value)} className="form-input" />
                       </div>
-                      <div>
+                      <div className="form-label-div">
                         <label className="form-label">Role</label>
                         <input value={studentForm.role || ''} onChange={e=>handleStudentChange('role',e.target.value)} className="form-input" />
                       </div>

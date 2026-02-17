@@ -8,7 +8,7 @@ import './AdminDashboard.css'
 function AdminDashboard(){
   const user = JSON.parse(localStorage.getItem("user")) || {};
   const logout = ()=>{ localStorage.removeItem('user'); window.location.href = '/'; }
-  const [active, setActive] = useState('students');
+  const [active, setActive] = useState('profile');
 
   return(
     <div className="page-wrapper">
@@ -31,6 +31,7 @@ function AdminDashboard(){
         <div className="dashboard-body">
           <div className="dashboard-layout">
             <aside className="sidebar">
+              <button className={active==='profile'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActive('profile')}>My Profile</button>
               <button className={active==='students'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActive('students')}>Student Details</button>
               <button className={active==='teachers'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActive('teachers')}>Teacher Details</button>
               <button className={active==='attendance'? 'sidebar-btn active' : 'sidebar-btn'} onClick={()=>setActive('attendance')}>Attendance</button>
@@ -38,6 +39,29 @@ function AdminDashboard(){
             </aside>
 
             <main className="content">
+              {active === 'profile' && (
+                <div className="page-card">
+                  <h3 className="page-title">My Profile</h3>
+                  <div className="profile-info-container">
+                    <div className="profile-info-item">
+                      <label className="info-label">UID</label>
+                      <p className="info-value">{user.uid || 'N/A'}</p>
+                    </div>
+                    <div className="profile-info-item">
+                      <label className="info-label">Name</label>
+                      <p className="info-value">{user.name || 'N/A'}</p>
+                    </div>
+                    <div className="profile-info-item">
+                      <label className="info-label">Email</label>
+                      <p className="info-value">{user.email || 'N/A'}</p>
+                    </div>
+                    <div className="profile-info-item">
+                      <label className="info-label">Role</label>
+                      <p className="info-value">{user.role || 'N/A'}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
               {active === 'students' && <ManageUsers view="students" />}
               {active === 'teachers' && <ManageUsers view="teachers" />}
               {active === 'attendance' && <Reports />}
